@@ -1,0 +1,89 @@
+baseURL = 'https://hri7hik-h4cks.com/'
+languageCode = 'en-us'
+title = 'Hri7ik H4cks'
+theme = 'PaperMod'
+
+[minify]
+  disableXML = true
+  disableHTML = false
+  disableCSS = false
+  disableJS = false
+  disableJSON = true
+  minifyOutput = true
+
+[params]
+  env = "production"
+  defaultTheme = "dark"
+  customCSS = ["css/custom.css"]
+  mainSections = ["posts"]
+  showtoc = true
+  showReadingTime = true
+  showWordCount = true
+
+  # Site description
+  description = "Cybersecurity walkthroughs, CTF writeups, and security analysis by Hrithik"
+
+  # Author info
+  author = "Hrithik"
+
+  # Search
+  displayFullName = true
+
+  socialIcons = [
+    { name = "github", url = "https://github.com/yourusername" },
+    { name = "linkedin", url = "https://linkedin.com/in/yourprofile" },
+    { name = "twitter", url = "https://twitter.com/yourusername" }
+  ]
+
+  [params.assets]
+    googleFonts = ["JetBrains Mono:400,500,600", "Inter:400,500,600,700"]
+
+  [params.homeInfoParams]
+    title = "Hri7ik H4cks"
+    subtitle = "Penetration Testing | CTF Walkthroughs | Security Research"
+    content = """
+    Welcome to my cybersecurity blog where I share:
+    - Detailed CTF walkthroughs
+    - Penetration testing methodologies
+    - Security research and analysis
+    - Tool reviews and tutorials
+    """
+
+  [params.label]
+    text = "Hri7ik H4cks"
+    icon = "/favicon.ico"
+    iconHeight = 35
+
+  # Configure taxonomies
+  [taxonomies]
+    tag = "tags"
+    category = "categories"
+    difficulty = "difficulties"
+    platform = "platforms"
+    tool = "tools"
+
+  [params.editPost]
+    URL = "https://github.com/yourusername/yourblogrepo/edit/main/content"
+    Text = "Suggest Changes"
+    iconText = "✏️"
+    iconLeading = false
+
+  [params.readingTime]
+    postMetaPlacement = "bottom"
+    postMetaFormat = "left"
+
+
+[menu]
+  [[menu.main]]
+    name = "Posts"
+    url = "/posts"
+    weight = 1
+  [[menu.main]]
+    name = "About"
+    url = "/about"
+    weight = 2
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

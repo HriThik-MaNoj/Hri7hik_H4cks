@@ -1,0 +1,491 @@
+:root {
+    --primary-color: #0a0e27;
+    --secondary-color: #151b3d;
+    --tertiary-color: #1e2749;
+    --accent-color: #00ff88;
+    --accent-secondary: #00d4ff;
+    --text-color: #e4e4e7;
+    --text-secondary: #a1a1aa;
+    --heading-font: 'Inter', sans-serif;
+    --body-font: 'Inter', sans-serif;
+    --code-font: 'JetBrains Mono', monospace;
+    --border-color: #2a2f4a;
+    --success-color: #00ff88;
+    --warning-color: #fbbf24;
+    --danger-color: #ff4444;
+    --info-color: #00d4ff;
+}
+
+body {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: var(--text-color);
+    font-family: var(--body-font);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+    color: var(--accent-color);
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    border-bottom: 3px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: var(--accent-secondary);
+}
+
+a {
+    color: var(--accent-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+code {
+    font-family: var(--code-font);
+    background-color: var(--tertiary-color);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.9em;
+    border: 1px solid var(--border-color);
+}
+
+/* Code blocks */
+pre {
+    background-color: var(--tertiary-color);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--accent-color);
+    padding: 1.5rem;
+    border-radius: 5px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+pre code {
+    background: transparent;
+    border: none;
+    padding: 0;
+    display: block;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Blockquotes */
+blockquote {
+    border-left: 4px solid var(--accent-color);
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    border: 1px solid var(--border-color);
+}
+
+table th {
+    background-color: var(--tertiary-color);
+    color: var(--accent-color);
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+table tr:hover {
+    background-color: rgba(0, 255, 136, 0.05);
+}
+
+/* Lists */
+ul, ol {
+    padding-left: 2rem;
+    margin: 1rem 0;
+}
+
+li {
+    margin: 0.5rem 0;
+}
+
+/* Difficulty badges */
+.difficulty-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-right: 0.5rem;
+}
+
+.difficulty-beginner {
+    background-color: var(--success-color);
+    color: var(--primary-color);
+}
+
+.difficulty-intermediate {
+    background-color: var(--warning-color);
+    color: var(--primary-color);
+}
+
+.difficulty-advanced {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.difficulty-hard {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+/* Callout boxes */
+.callout {
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 5px;
+    border-left: 4px solid;
+}
+
+.callout-info {
+    background-color: rgba(0, 212, 255, 0.1);
+    border-color: var(--info-color);
+}
+
+.callout-warning {
+    background-color: rgba(251, 191, 36, 0.1);
+    border-color: var(--warning-color);
+}
+
+.callout-danger {
+    background-color: rgba(255, 68, 68, 0.1);
+    border-color: var(--danger-color);
+}
+
+.callout-success {
+    background-color: rgba(0, 255, 136, 0.1);
+    border-color: var(--success-color);
+}
+
+.callout-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Terminal/console styling */
+.terminal {
+    background-color: #000;
+    color: #00ff00;
+    font-family: var(--code-font);
+    padding: 1.5rem;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    margin: 1.5rem 0;
+}
+
+.terminal::before {
+    content: ">_";
+    color: var(--accent-color);
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+/* Post meta information */
+.post-meta {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 1rem 0;
+    padding: 0.5rem 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Tags and taxonomies */
+.post-tags {
+    margin: 1rem 0;
+}
+
+.post-tag {
+    display: inline-block;
+    background-color: var(--tertiary-color);
+    color: var(--accent-secondary);
+    padding: 0.25rem 0.75rem;
+    margin: 0.25rem;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.post-tag:hover {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    border-color: var(--accent-color);
+}
+
+/* Main content area */
+.main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Image styling */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    margin: 1rem 0;
+}
+
+/* Tool taxonomy display */
+.tool-badge {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 0.3rem 0.8rem;
+    margin: 0.25rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.tool-badge::before {
+    content: "⚙️";
+    margin-right: 0.4rem;
+}
+
+/* Reading progress bar */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background-color: var(--accent-color);
+    z-index: 1000;
+    transition: width 0.3s ease;
+}
+
+/* Code blocks with enhanced styling */
+.code-block-wrapper {
+    margin: 1.5rem 0;
+}
+
+.code-block-title {
+    background-color: var(--tertiary-color);
+    color: var(--accent-color);
+    padding: 0.5rem 1rem;
+    border-radius: 5px 5px 0 0;
+    border: 1px solid var(--border-color);
+    border-bottom: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.code-block {
+    border: 1px solid var(--border-color);
+    border-radius: 0 0 5px 5px;
+    overflow: hidden;
+}
+
+/* Terminal block styling */
+.terminal-block {
+    margin: 1.5rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.terminal-header {
+    background-color: var(--tertiary-color);
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.terminal-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.terminal-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.terminal-title {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.terminal {
+    background-color: #000;
+    color: #00ff00;
+    font-family: var(--code-font);
+    padding: 1.5rem;
+}
+
+.terminal .prompt {
+    margin-bottom: 0.75rem;
+}
+
+.terminal .user {
+    color: #00d4ff;
+}
+
+.terminal .path {
+    color: #fbbf24;
+}
+
+.terminal .symbol {
+    color: #00ff88;
+    margin: 0 0.5rem;
+}
+
+.terminal .command {
+    color: #ffffff;
+}
+
+.terminal .output {
+    color: #00ff00;
+    padding-left: 1rem;
+}
+
+/* Copy button styling */
+.copy-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: var(--tertiary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0.4rem 0.6rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    opacity: 0;
+    z-index: 10;
+    font-family: var(--body-font);
+}
+
+.copy-button:hover {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    opacity: 1 !important;
+}
+
+.copy-button svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Image wrapper styling */
+.image-wrapper {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.blog-image {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.blog-image:hover {
+    transform: scale(1.02);
+}
+
+.image-caption {
+    margin-top: 0.75rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Callout content styling */
+.callout-content {
+    margin-top: 0.5rem;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--primary-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-secondary);
+}
+
+/* Selection color */
+::selection {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .main {
+        padding: 15px;
+    }
+
+    pre {
+        padding: 1rem;
+    }
+}

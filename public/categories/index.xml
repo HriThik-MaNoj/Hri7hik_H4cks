@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Categories on Hri7ik H4cks</title>
+    <link>http://localhost:1313/categories/</link>
+    <description>Recent content in Categories on Hri7ik H4cks</description>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 01 Nov 2025 21:00:00 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CTF</title>
+      <link>http://localhost:1313/categories/ctf/</link>
+      <pubDate>Sat, 01 Nov 2025 21:00:00 +0530</pubDate>
+      <guid>http://localhost:1313/categories/ctf/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>HackTheBox</title>
+      <link>http://localhost:1313/categories/hackthebox/</link>
+      <pubDate>Sat, 01 Nov 2025 21:00:00 +0530</pubDate>
+      <guid>http://localhost:1313/categories/hackthebox/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Walkthrough</title>
+      <link>http://localhost:1313/categories/walkthrough/</link>
+      <pubDate>Sat, 01 Nov 2025 21:00:00 +0530</pubDate>
+      <guid>http://localhost:1313/categories/walkthrough/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Best Practices</title>
+      <link>http://localhost:1313/categories/best-practices/</link>
+      <pubDate>Sat, 01 Nov 2025 20:24:39 +0530</pubDate>
+      <guid>http://localhost:1313/categories/best-practices/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Network Security</title>
+      <link>http://localhost:1313/categories/network-security/</link>
+      <pubDate>Sat, 01 Nov 2025 20:24:39 +0530</pubDate>
+      <guid>http://localhost:1313/categories/network-security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cybersecurity Awareness</title>
+      <link>http://localhost:1313/categories/cybersecurity-awareness/</link>
+      <pubDate>Sat, 01 Nov 2025 20:23:39 +0530</pubDate>
+      <guid>http://localhost:1313/categories/cybersecurity-awareness/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Social Engineering</title>
+      <link>http://localhost:1313/categories/social-engineering/</link>
+      <pubDate>Sat, 01 Nov 2025 20:23:39 +0530</pubDate>
+      <guid>http://localhost:1313/categories/social-engineering/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Development</title>
+      <link>http://localhost:1313/categories/development/</link>
+      <pubDate>Sat, 01 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/development/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Guide</title>
+      <link>http://localhost:1313/categories/guide/</link>
+      <pubDate>Sat, 01 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/guide/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tutorial</title>
+      <link>http://localhost:1313/categories/tutorial/</link>
+      <pubDate>Sat, 01 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/tutorial/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Obsidian on Hri7ik H4cks</title>
+    <link>http://localhost:1313/tools/obsidian/</link>
+    <description>Recent content in Obsidian on Hri7ik H4cks</description>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 01 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tools/obsidian/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a Cybersecurity Blog with Hugo: A Complete Journey</title>
+      <link>http://localhost:1313/posts/building-a-cybersecurity-blog-with-hugo/</link>
+      <pubDate>Sat, 01 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/building-a-cybersecurity-blog-with-hugo/</guid>
+      <description>A comprehensive guide to building a professional cybersecurity blog using Hugo static site generator, featuring custom dark themes, CTF templates, and automated workflows.</description>
+    </item>
+  </channel>
+</rss>

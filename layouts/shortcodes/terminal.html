@@ -1,0 +1,22 @@
+{{ $command := .Get "command" }}
+<div class="terminal-block">
+  <div class="terminal-header">
+    <div class="terminal-controls">
+      <span class="terminal-dot" style="background: #ff5f56;"></span>
+      <span class="terminal-dot" style="background: #ffbd2e;"></span>
+      <span class="terminal-dot" style="background: #27c93f;"></span>
+    </div>
+    <div class="terminal-title">Terminal</div>
+  </div>
+  <div class="terminal">
+    <div class="prompt">
+      <span class="user">hrithik@local</span>
+      <span class="path">~</span>
+      <span class="symbol">$</span>
+      <span class="command">{{ $command }}</span>
+    </div>
+    <div class="output">
+      {{ .Inner }}
+    </div>
+  </div>
+</div>

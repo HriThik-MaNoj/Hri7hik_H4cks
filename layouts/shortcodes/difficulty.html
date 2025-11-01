@@ -1,0 +1,3 @@
+{{ $level := .Get "level" | lower }}
+{{ $label := .Get "label" | default (title $level) }}
+<div class="difficulty-badge difficulty-{{ $level }}">{{ $label }}</div>

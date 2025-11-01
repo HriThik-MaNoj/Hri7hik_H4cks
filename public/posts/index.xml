@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Posts on Hri7ik H4cks</title>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content in Posts on Hri7ik H4cks</description>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 01 Nov 2025 21:00:00 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HackTheBox - Starting Point: Meow Walkthrough</title>
+      <link>http://localhost:1313/posts/sample-ctf-walkthrough/</link>
+      <pubDate>Sat, 01 Nov 2025 21:00:00 +0530</pubDate>
+      <guid>http://localhost:1313/posts/sample-ctf-walkthrough/</guid>
+      <description>Complete walkthrough of the HackTheBox Starting Point Meow machine - a beginner-friendly CTF covering basic enumeration and telnet access.</description>
+    </item>
+    <item>
+      <title>The Importance of Strong Passwords</title>
+      <link>http://localhost:1313/posts/the-importance-of-strong-passwords/</link>
+      <pubDate>Sat, 01 Nov 2025 20:27:39 +0530</pubDate>
+      <guid>http://localhost:1313/posts/the-importance-of-strong-passwords/</guid>
+      <description>&lt;h2 id=&#34;why-are-strong-passwords-important&#34;&gt;Why are Strong Passwords Important?&lt;/h2&gt;
+&lt;p&gt;Strong passwords are one of the most important things you can do to protect your online accounts. A strong password can help to prevent attackers from guessing your password and gaining access to your accounts.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Strong Password&#34; loading=&#34;lazy&#34; src=&#34;https://picsum.photos/800/400/?blur&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;how-to-create-a-strong-password&#34;&gt;How to Create a Strong Password&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Use a password manager.&lt;/strong&gt; A password manager can help you to generate and store strong, unique passwords for all of your accounts.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Use a long password.&lt;/strong&gt; A long password is more difficult to guess than a short password. Your password should be at least 12 characters long.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Use a mix of characters.&lt;/strong&gt; Your password should include a mix of upper and lowercase letters, numbers, and symbols.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Don&amp;rsquo;t use personal information.&lt;/strong&gt; Don&amp;rsquo;t use personal information, such as your name, birthday, or address, in your password.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;By following these tips, you can create strong passwords that will help to protect your online accounts from attackers.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Data Breaches and How to Prevent Them</title>
+      <link>http://localhost:1313/posts/data-breaches-and-how-to-prevent-them/</link>
+      <pubDate>Sat, 01 Nov 2025 20:26:39 +0530</pubDate>
+      <guid>http://localhost:1313/posts/data-breaches-and-how-to-prevent-them/</guid>
+      <description>&lt;h2 id=&#34;what-is-a-data-breach&#34;&gt;What is a Data Breach?&lt;/h2&gt;
+&lt;p&gt;A data breach is a security incident in which sensitive, protected, or confidential data is copied, transmitted, viewed, stolen, or used by an individual unauthorized to do so.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Data Breach&#34; loading=&#34;lazy&#34; src=&#34;https://picsum.photos/800/400/?blur&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;how-to-prevent-data-breaches&#34;&gt;How to Prevent Data Breaches&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Use strong passwords.&lt;/strong&gt; A strong password should be at least 12 characters long and include a mix of upper and lowercase letters, numbers, and symbols.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Be careful what you click on.&lt;/strong&gt; Don&amp;rsquo;t click on suspicious links or open attachments from unknown senders.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Keep your software up to date.&lt;/strong&gt; Software updates often include security patches that can help to protect you from data breaches.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Use a VPN.&lt;/strong&gt; A VPN can help to encrypt your traffic and protect your data from being intercepted by attackers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;By following these tips, you can help to protect yourself from data breaches and keep your data safe.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Top 5 Antivirus Software for 2025</title>
+      <link>http://localhost:1313/posts/top-5-antivirus-software/</link>
+      <pubDate>Sat, 01 Nov 2025 20:25:39 +0530</pubDate>
+      <guid>http://localhost:1313/posts/top-5-antivirus-software/</guid>
+      <description>&lt;h2 id=&#34;why-do-you-need-antivirus-software&#34;&gt;Why Do You Need Antivirus Software?&lt;/h2&gt;
+&lt;p&gt;Antivirus software is essential for protecting your computer from malware, such as viruses, worms, and Trojans. Malware can damage your computer, steal your data, and even allow attackers to take control of your computer.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Antivirus Software&#34; loading=&#34;lazy&#34; src=&#34;https://picsum.photos/800/400/?blur&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;top-5-antivirus-software-for-2025&#34;&gt;Top 5 Antivirus Software for 2025&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Bitdefender Antivirus Plus:&lt;/strong&gt; Bitdefender is a great all-around antivirus software that offers excellent protection from malware.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Norton AntiVirus Plus:&lt;/strong&gt; Norton is another great option that offers excellent protection from malware and a variety of other features.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Kaspersky Anti-Virus:&lt;/strong&gt; Kaspersky is a well-known name in the antivirus industry and offers excellent protection from malware.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;McAfee AntiVirus Plus:&lt;/strong&gt; McAfee is another well-known name in the antivirus industry and offers excellent protection from malware.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Webroot SecureAnywhere AntiVirus:&lt;/strong&gt; Webroot is a lightweight antivirus software that offers excellent protection from malware.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;By using one of these antivirus software programs, you can help to protect your computer from malware and keep your data safe.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Secure Your Wi-Fi Network</title>
+      <link>http://localhost:1313/posts/how-to-secure-your-wifi/</link>
+      <pubDate>Sat, 01 Nov 2025 20:24:39 +0530</pubDate>
+      <guid>http://localhost:1313/posts/how-to-secure-your-wifi/</guid>
+      <description>Learn essential steps to secure your Wi-Fi network from common wireless attacks and protect your data from unauthorized access.</description>
+    </item>
+    <item>
+      <title>What is Phishing and How to Avoid It</title>
+      <link>http://localhost:1313/posts/what-is-phishing/</link>
+      <pubDate>Sat, 01 Nov 2025 20:23:39 +0530</pubDate>
+      <guid>http://localhost:1313/posts/what-is-phishing/</guid>
+      <description>Learn to identify and protect against phishing attacks, one of the most common cyber threats today.</description>
+    </item>
+    <item>
+      <title>Building a Cybersecurity Blog with Hugo: From Zero to Production</title>
+      <link>http://localhost:1313/posts/building-a-cybersecurity-blog-with-hugo/</link>
+      <pubDate>Sat, 01 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/building-a-cybersecurity-blog-with-hugo/</guid>
+      <description>A practical guide to building a professional cybersecurity blog using Hugo, told as a story of the complete development journey.</description>
+    </item>
+    <item>
+      <title>How to Create a Blog: The Complete Beginner&#39;s Guide</title>
+      <link>http://localhost:1313/posts/how-to-create-a-blog-complete-guide/</link>
+      <pubDate>Sat, 01 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/how-to-create-a-blog-complete-guide/</guid>
+      <description>A comprehensive, step-by-step guide to creating your own blog from scratch, covering planning, setup, customization, and deployment.</description>
+    </item>
+  </channel>
+</rss>

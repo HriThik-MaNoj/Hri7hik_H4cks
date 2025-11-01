@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>CTF on Hri7ik H4cks</title>
+    <link>http://localhost:1313/categories/ctf/</link>
+    <description>Recent content in CTF on Hri7ik H4cks</description>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 01 Nov 2025 21:00:00 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/ctf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HackTheBox - Starting Point: Meow Walkthrough</title>
+      <link>http://localhost:1313/posts/sample-ctf-walkthrough/</link>
+      <pubDate>Sat, 01 Nov 2025 21:00:00 +0530</pubDate>
+      <guid>http://localhost:1313/posts/sample-ctf-walkthrough/</guid>
+      <description>Complete walkthrough of the HackTheBox Starting Point Meow machine - a beginner-friendly CTF covering basic enumeration and telnet access.</description>
+    </item>
+  </channel>
+</rss>

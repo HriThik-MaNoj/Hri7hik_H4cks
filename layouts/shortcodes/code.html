@@ -1,0 +1,10 @@
+{{ $language := .Get "language" | default "bash" }}
+{{ $title := .Get "title" }}
+<div class="code-block-wrapper">
+  {{ if $title }}
+  <div class="code-block-title">{{ $title }}</div>
+  {{ end }}
+  <div class="code-block">
+    <pre><code class="language-{{ $language }}">{{ .Inner }}</code></pre>
+  </div>
+</div>

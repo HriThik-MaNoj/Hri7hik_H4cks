@@ -1,0 +1,17 @@
+# Python Dependencies for Obsidian to Hugo Converter
+# ====================================================
+
+# YAML parsing for configuration
+pyyaml>=6.0
+
+# Front matter parsing and generation
+python-frontmatter>=1.0.0
+
+# Image processing and optimization
+Pillow>=9.0.0
+
+# Optional: For enhanced markdown processing
+markdown>=3.4.0
+
+# Optional: For better path handling
+pathlib2>=2.3.0

@@ -1,0 +1,25 @@
+{{ $type := .Get "type" | default "info" }}
+{{ $title := .Get "title" }}
+
+{{ $icon_map := dict
+  "info" "ℹ️"
+  "note" "📝"
+  "tip" "💡"
+  "success" "✅"
+  "warning" "⚠️"
+  "danger" "🚨"
+  "question" "❓"
+  "abstract" "📄"
+  "example" "📌"
+}}
+
+{{ $icon := index $icon_map $type | default "📄" }}
+
+<div class="callout callout-{{ $type }}">
+  <div class="callout-title">
+    {{ if $title }}{{ $title }}{{ else }}{{ $icon }} {{ title $type }}{{ end }}
+  </div>
+  <div class="callout-content">
+    {{ .Inner }}
+  </div>
+</div>
