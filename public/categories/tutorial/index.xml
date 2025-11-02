@@ -6,8 +6,15 @@
     <description>Recent content in Tutorial on Hri7ik H4cks</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 01 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 02 Nov 2025 10:28:39 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SQL Injection Basics and Prevention</title>
+      <link>http://localhost:1313/posts/sql-injection-basics-and-prevention/</link>
+      <pubDate>Sun, 02 Nov 2025 10:28:39 +0000</pubDate>
+      <guid>http://localhost:1313/posts/sql-injection-basics-and-prevention/</guid>
+      <description> SQL Injection Basics and Prevention</description>
+    </item>
     <item>
       <title>Building a Cybersecurity Blog with Hugo: From Zero to Production</title>
       <link>http://localhost:1313/posts/building-a-cybersecurity-blog-with-hugo/</link>

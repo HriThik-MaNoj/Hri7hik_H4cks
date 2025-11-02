@@ -1,9 +1,10 @@
 ---
-title: "Sql Injection Basics And Prevention"
+title: "SQL Injection Basics and Prevention"
 date: "2025-11-02T10:28:39"
 draft: false
-categories: ["General"]
-tools: ["john", "hashcat", "bash", "github", "git", "sh", "sqlmap", "docker", "burp", "java", "python"]
+categories: ["Web Security", "Tutorial", "Cybersecurity"]
+tools: ["sqlmap", "burp", "dvwa", "hashcat", "john", "mysql"]
+difficulties: ["intermediate"]
 description: " SQL Injection Basics and Prevention"
 ---
 
@@ -47,11 +48,18 @@ By the end of this tutorial, you'll be able to:
 
 ### Use Cases
 
+This tutorial is valuable for:
 - Web application security testing
 - Secure coding practices
 - Code review and vulnerability assessment
 - Incident response for database breaches
 - DevSecOps integration
+
+<div class="callout callout-danger">
+<div class="callout-title">⚠️ Legal & Ethical Notice</div>
+All techniques described in this tutorial should only be used on systems you own or have explicit permission to test. Unauthorized testing is illegal and unethical. Use these skills responsibly and in accordance with applicable laws and regulations. The author and website owners are not responsible for any misuse of this information.
+
+</div>
 
 ## Prerequisites
 
@@ -118,7 +126,6 @@ Password: anything
 This transforms the query into:
 ```sql
 SELECT * FROM users WHERE username='admin' --' AND password='anything'
-
 ```
 
 <!-- COPY_BUTTON -->

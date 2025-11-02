@@ -30,13 +30,6 @@
       <description> Nmap Command Reference</description>
     </item>
     <item>
-      <title>Sql Injection Basics And Prevention</title>
-      <link>http://localhost:1313/posts/sql-injection-basics-and-prevention/</link>
-      <pubDate>Sun, 02 Nov 2025 10:28:39 +0000</pubDate>
-      <guid>http://localhost:1313/posts/sql-injection-basics-and-prevention/</guid>
-      <description> SQL Injection Basics and Prevention</description>
-    </item>
-    <item>
       <title>Web Application Security Testing Burp Suite</title>
       <link>http://localhost:1313/posts/web-application-security-testing-burp-suite/</link>
       <pubDate>Sun, 02 Nov 2025 10:28:39 +0000</pubDate>
