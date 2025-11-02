@@ -6,8 +6,22 @@
     <description>Recent content in Nmap on Hri7ik H4cks</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 01 Nov 2025 21:00:00 +0530</lastBuildDate>
+    <lastBuildDate>Sun, 02 Nov 2025 10:28:39 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tools/nmap/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hack The Box Lame Walkthrough</title>
+      <link>http://localhost:1313/posts/hack-the-box-lame-walkthrough/</link>
+      <pubDate>Sun, 02 Nov 2025 10:28:39 +0000</pubDate>
+      <guid>http://localhost:1313/posts/hack-the-box-lame-walkthrough/</guid>
+      <description> Hack The Box - Lame Walkthrough</description>
+    </item>
+    <item>
+      <title>Nmap Command Reference Cheat Sheet</title>
+      <link>http://localhost:1313/posts/nmap-command-reference-cheat-sheet/</link>
+      <pubDate>Sun, 02 Nov 2025 10:28:39 +0000</pubDate>
+      <guid>http://localhost:1313/posts/nmap-command-reference-cheat-sheet/</guid>
+      <description> Nmap Command Reference</description>
+    </item>
     <item>
       <title>HackTheBox - Starting Point: Meow Walkthrough</title>
       <link>http://localhost:1313/posts/sample-ctf-walkthrough/</link>

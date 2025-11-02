@@ -6,8 +6,50 @@
     <description>Recent content in Home on Hri7ik H4cks</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 01 Nov 2025 21:00:00 +0530</lastBuildDate>
+    <lastBuildDate>Sun, 02 Nov 2025 10:28:39 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hack The Box Lame Walkthrough</title>
+      <link>http://localhost:1313/posts/hack-the-box-lame-walkthrough/</link>
+      <pubDate>Sun, 02 Nov 2025 10:28:39 +0000</pubDate>
+      <guid>http://localhost:1313/posts/hack-the-box-lame-walkthrough/</guid>
+      <description> Hack The Box - Lame Walkthrough</description>
+    </item>
+    <item>
+      <title>Log4j Vulnerability Analysis Cve 2021 44228</title>
+      <link>http://localhost:1313/posts/log4j-vulnerability-analysis-cve-2021-44228/</link>
+      <pubDate>Sun, 02 Nov 2025 10:28:39 +0000</pubDate>
+      <guid>http://localhost:1313/posts/log4j-vulnerability-analysis-cve-2021-44228/</guid>
+      <description> Log4j Vulnerability Analysis CVE-2021-44228</description>
+    </item>
+    <item>
+      <title>Nmap Command Reference Cheat Sheet</title>
+      <link>http://localhost:1313/posts/nmap-command-reference-cheat-sheet/</link>
+      <pubDate>Sun, 02 Nov 2025 10:28:39 +0000</pubDate>
+      <guid>http://localhost:1313/posts/nmap-command-reference-cheat-sheet/</guid>
+      <description> Nmap Command Reference</description>
+    </item>
+    <item>
+      <title>Sql Injection Basics And Prevention</title>
+      <link>http://localhost:1313/posts/sql-injection-basics-and-prevention/</link>
+      <pubDate>Sun, 02 Nov 2025 10:28:39 +0000</pubDate>
+      <guid>http://localhost:1313/posts/sql-injection-basics-and-prevention/</guid>
+      <description> SQL Injection Basics and Prevention</description>
+    </item>
+    <item>
+      <title>Web Application Security Testing Burp Suite</title>
+      <link>http://localhost:1313/posts/web-application-security-testing-burp-suite/</link>
+      <pubDate>Sun, 02 Nov 2025 10:28:39 +0000</pubDate>
+      <guid>http://localhost:1313/posts/web-application-security-testing-burp-suite/</guid>
+      <description> Web Application Security Testing with Burp Suite</description>
+    </item>
+    <item>
+      <title>Test</title>
+      <link>http://localhost:1313/test/</link>
+      <pubDate>Sat, 01 Nov 2025 22:41:44 +0530</pubDate>
+      <guid>http://localhost:1313/test/</guid>
+      <description></description>
+    </item>
     <item>
       <title>HackTheBox - Starting Point: Meow Walkthrough</title>
       <link>http://localhost:1313/posts/sample-ctf-walkthrough/</link>
@@ -83,6 +125,13 @@
       <pubDate>Sat, 01 Nov 2025 20:23:39 +0530</pubDate>
       <guid>http://localhost:1313/posts/what-is-phishing/</guid>
       <description>Learn to identify and protect against phishing attacks, one of the most common cyber threats today.</description>
+    </item>
+    <item>
+      <title>Hello World</title>
+      <link>http://localhost:1313/posts/hello-world/</link>
+      <pubDate>Sat, 01 Nov 2025 20:08:15 +0530</pubDate>
+      <guid>http://localhost:1313/posts/hello-world/</guid>
+      <description></description>
     </item>
     <item>
       <title>Building a Cybersecurity Blog with Hugo: From Zero to Production</title>

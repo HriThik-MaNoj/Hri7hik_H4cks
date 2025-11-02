@@ -6,8 +6,78 @@
     <description>Recent content in Tools on Hri7ik H4cks</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 01 Nov 2025 21:00:00 +0530</lastBuildDate>
+    <lastBuildDate>Sun, 02 Nov 2025 10:28:39 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tools/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bash</title>
+      <link>http://localhost:1313/tools/bash/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tools/bash/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Burp</title>
+      <link>http://localhost:1313/tools/burp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tools/burp/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cmd</title>
+      <link>http://localhost:1313/tools/cmd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tools/cmd/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Docker</title>
+      <link>http://localhost:1313/tools/docker/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tools/docker/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Git</title>
+      <link>http://localhost:1313/tools/git/</link>
+      <pubDate>Sat, 01 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tools/git/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Github</title>
+      <link>http://localhost:1313/tools/github/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tools/github/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hashcat</title>
+      <link>http://localhost:1313/tools/hashcat/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tools/hashcat/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Java</title>
+      <link>http://localhost:1313/tools/java/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tools/java/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>John</title>
+      <link>http://localhost:1313/tools/john/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tools/john/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Metasploit</title>
+      <link>http://localhost:1313/tools/metasploit/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tools/metasploit/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Nmap</title>
       <link>http://localhost:1313/tools/nmap/</link>
@@ -16,17 +86,38 @@
       <description></description>
     </item>
     <item>
+      <title>Python</title>
+      <link>http://localhost:1313/tools/python/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tools/python/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Sh</title>
+      <link>http://localhost:1313/tools/sh/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tools/sh/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Sqlmap</title>
+      <link>http://localhost:1313/tools/sqlmap/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tools/sqlmap/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ssh</title>
+      <link>http://localhost:1313/tools/ssh/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tools/ssh/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Telnet</title>
       <link>http://localhost:1313/tools/telnet/</link>
       <pubDate>Sat, 01 Nov 2025 21:00:00 +0530</pubDate>
       <guid>http://localhost:1313/tools/telnet/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Git</title>
-      <link>http://localhost:1313/tools/git/</link>
-      <pubDate>Sat, 01 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tools/git/</guid>
       <description></description>
     </item>
     <item>

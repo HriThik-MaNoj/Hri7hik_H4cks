@@ -2,16 +2,94 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/tools/bash/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tools/burp/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tools/cmd/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tools/docker/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/general/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tools/git/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tools/github/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/hack-the-box-lame-walkthrough/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/platforms/hackthebox/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tools/hashcat/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tools/java/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tools/john/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/log4j-vulnerability-analysis-cve-2021-44228/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tools/metasploit/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tools/nmap/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/nmap-command-reference-cheat-sheet/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/platforms/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tools/python/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tools/sh/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/sql-injection-basics-and-prevention/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tools/sqlmap/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tools/ssh/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tools/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/web-application-security-testing-burp-suite/</loc>
+    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/test/</loc>
     <lastmod>2025-11-01T22:41:44+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/difficulties/beginner/</loc>
     <lastmod>2025-11-01T21:00:00+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/beginner/</loc>
-    <lastmod>2025-11-01T21:00:00+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/</loc>
     <lastmod>2025-11-01T21:00:00+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/ctf/</loc>
@@ -26,22 +104,10 @@
     <loc>http://localhost:1313/categories/hackthebox/</loc>
     <lastmod>2025-11-01T21:00:00+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/platforms/hackthebox/</loc>
-    <lastmod>2025-11-01T21:00:00+05:30</lastmod>
-  </url><url>
     <loc>http://localhost:1313/posts/sample-ctf-walkthrough/</loc>
     <lastmod>2025-11-01T21:00:00+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/network/</loc>
-    <lastmod>2025-11-01T21:00:00+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tools/nmap/</loc>
-    <lastmod>2025-11-01T21:00:00+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/platforms/</loc>
-    <lastmod>2025-11-01T21:00:00+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/</loc>
     <lastmod>2025-11-01T21:00:00+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
@@ -51,9 +117,6 @@
     <lastmod>2025-11-01T21:00:00+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/tools/telnet/</loc>
-    <lastmod>2025-11-01T21:00:00+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tools/</loc>
     <lastmod>2025-11-01T21:00:00+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/walkthrough/</loc>
@@ -116,6 +179,9 @@
     <loc>http://localhost:1313/posts/what-is-phishing/</loc>
     <lastmod>2025-11-01T20:23:39+05:30</lastmod>
   </url><url>
+    <loc>http://localhost:1313/posts/hello-world/</loc>
+    <lastmod>2025-11-01T20:08:15+05:30</lastmod>
+  </url><url>
     <loc>http://localhost:1313/tags/blog/</loc>
     <lastmod>2025-11-01T00:00:00+00:00</lastmod>
   </url><url>
@@ -126,9 +192,6 @@
     <lastmod>2025-11-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/development/</loc>
-    <lastmod>2025-11-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tools/git/</loc>
     <lastmod>2025-11-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/guide/</loc>

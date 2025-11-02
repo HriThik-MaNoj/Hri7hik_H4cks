@@ -108,17 +108,18 @@ serve_site() {
 
     print_status "Hugo server will start on http://localhost:1313"
     print_status "Press Ctrl+C to stop the server"
+    print_status "Using development config with localhost URLs"
     echo ""
 
-    hugo server --buildDrafts --buildExpired --disableFastRender
+    hugo server --config hugo.toml,config-development.toml --buildDrafts --buildExpired --buildFuture --disableFastRender --bind 0.0.0.0 --port 1313
 }
 
 # Build site for production
 build_site() {
     print_header "Building Site for Production"
 
-    print_status "Building site..."
-    hugo --minify
+    print_status "Building site (including future posts)..."
+    hugo --minify --buildExpired --buildFuture
 
     if [ $? -eq 0 ]; then
         print_success "Site built successfully in public/"

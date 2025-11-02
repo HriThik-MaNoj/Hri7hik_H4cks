@@ -338,14 +338,28 @@ class ObsidianToHugoConverter:
         """Write the converted markdown file with front matter."""
         output_path.parent.mkdir(parents=True, exist_ok=True)
 
-        # Convert front matter to YAML
-        front_matter_yaml = yaml.dump(front_matter, default_flow_style=False, allow_unicode=True)
+        # Manually format front matter for Hugo compatibility
+        # Use inline array syntax: key: ["value1", "value2"]
+        lines = []
+        for key, value in front_matter.items():
+            if isinstance(value, list):
+                # Format list as inline array with quoted values
+                formatted_values = [f'"{v}"' if isinstance(v, str) else str(v) for v in value]
+                lines.append(f'{key}: [{", ".join(formatted_values)}]')
+            elif isinstance(value, bool):
+                # Format boolean properly
+                lines.append(f'{key}: {str(value).lower()}')
+            else:
+                # Format string/number with quotes
+                lines.append(f'{key}: "{value}"')
+
+        front_matter_yaml = '\n'.join(lines)
 
         # Write file
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write('---\n')
             f.write(front_matter_yaml)
-            f.write('---\n\n')
+            f.write('\n---\n\n')
             f.write(content)
 
     def process_directory(self, source_dir: str, output_dir: str) -> None:
@@ -361,11 +375,17 @@ class ObsidianToHugoConverter:
         for obsidian_file in markdown_files:
             # Generate output filename (preserve directory structure)
             rel_path = obsidian_file.relative_to(source_path)
-            output_file = output_path / rel_path
 
             # Skip files in certain directories
             if any(part.startswith('.') for part in rel_path.parts):
                 continue
+
+            # Remove 'posts' subdirectory from path if it exists
+            # obsidian-vault/posts/*.md should go to content/posts/*.md (not content/posts/posts/*.md)
+            if len(rel_path.parts) > 0 and rel_path.parts[0] == 'posts':
+                rel_path = Path(*rel_path.parts[1:])
+
+            output_file = output_path / rel_path
 
             try:
                 self.process_file(obsidian_file, output_file)
