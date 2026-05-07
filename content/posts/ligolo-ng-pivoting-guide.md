@@ -1,12 +1,17 @@
 ---
-title: "Ligolo-ng: Single and Double Pivoting Guide"
+title: "Master Pivoting with Ligolo-ng: From Single Hops to Deep Network Tunnels"
 date: "2026-05-07T08:00:00+05:30"
 draft: false
-description: "Hands-on guide to Ligolo-ng — install, configure, and pivot through one or more compromised hosts using TUN interface tunneling instead of SOCKS proxies."
+description: "Forget proxychains. Master single and double pivoting with Ligolo-ng — the modern TUN-based tunneling tool every red teamer should know."
 categories: ["Tutorial", "Pentesting"]
 tags: ["pivoting", "tunneling", "lateral-movement", "post-exploitation", "red-team", "ligolo-ng"]
 difficulties: ["intermediate"]
 tools: ["ligolo-ng", "nmap", "go"]
+cover:
+    image: "/images/ligolo-ng-cover.png"
+    alt: "Master Pivoting with Ligolo-ng"
+    caption: "Pivot through Linux and Windows targets with a single TUN interface"
+    relative: false
 ---
 
 <div class="difficulty-badge difficulty-intermediate">Intermediate Level</div>
