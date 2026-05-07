@@ -39,14 +39,10 @@ theme = 'PaperMod'
     googleFonts = ["JetBrains Mono:400,500,600", "Inter:400,500,600,700"]
 
   [params.homeInfoParams]
-    title = "Hri7ik H4cks"
-    subtitle = "Penetration Testing | CTF Walkthroughs | Security Research"
+    title = "Hri7hik H4cks 👾"
+    subtitle = "Field notes from the offensive side."
     content = """
-    Welcome to my cybersecurity blog where I share:
-    - Detailed CTF walkthroughs
-    - Penetration testing methodologies
-    - Security research and analysis
-    - Tool reviews and tutorials
+    A working lab journal — pivots, payloads, and the rabbit holes between them. No SEO filler. Every post is something I actually ran, broke, or reverse-engineered. Welcome in.
     """
 
   [params.label]

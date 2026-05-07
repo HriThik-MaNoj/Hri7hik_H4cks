@@ -2,14 +2,22 @@
 title: "Home"
 ---
 
-Welcome to my cybersecurity blog where I share detailed penetration testing methodologies, CTF walkthroughs, and security research. This space serves as my portfolio documenting my journey in cybersecurity and my contributions to the security community.
+## What lives here
 
-## What You'll Find Here
+**🎯 Pwn-first walkthroughs**
+HackTheBox, TryHackMe, picoCTF — focused on the *why* behind each step. Including the dead ends. The pivots I nearly missed. The misconfig I noticed an hour too late.
 
-- **CTF Writeups**: Detailed walkthroughs of challenges from platforms like HackTheBox, TryHackMe, and picoCTF
-- **Penetration Testing**: Methodologies and real-world testing scenarios
-- **Security Research**: Analysis of vulnerabilities, attack techniques, and defense strategies
-- **Tool Reviews**: In-depth evaluations of cybersecurity tools and frameworks
-- **Tutorials**: Step-by-step guides for security testing and defensive measures
+**🛠️ Operator-grade tooling**
+How tools actually behave under load — Ligolo-ng for L3 tunneling, BloodHound for AD attack paths, custom payloads when the off-the-shelf one trips EDR.
 
-Feel free to reach out for collaboration or if you have any questions!
+**🔬 Vulnerability research**
+When a critical CVE drops, I'd rather understand it than retweet it. Annotated patch diffs, PoC builds, and writeups that take the bug apart instead of just naming it.
+
+**📡 Tradecraft + tutorials**
+Detection-aware methodology. Why something works *and* what's logging it. The kind of post I'd have wanted at 2 a.m. before an exam.
+
+---
+
+> *Lab journal, not a glossary. Stay curious. Break ethically. Document obsessively.*
+
+**Latest writeups below ↓**
