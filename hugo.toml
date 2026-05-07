@@ -30,7 +30,7 @@ theme = 'PaperMod'
   displayFullName = true
 
   socialIcons = [
-    { name = "github", url = "https://github.com/yourusername" },
+    { name = "github", url = "https://github.com/HriThik-MaNoj" },
     { name = "linkedin", url = "https://www.linkedin.com/in/hrithikmanoj/" },
     { name = "twitter", url = "https://twitter.com/yourusername" }
   ]
