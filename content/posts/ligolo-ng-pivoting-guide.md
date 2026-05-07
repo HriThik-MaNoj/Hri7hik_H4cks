@@ -1,6 +1,6 @@
 ---
 title: "Ligolo-ng: Single and Double Pivoting Guide"
-date: "2026-05-07T10:00:00+05:30"
+date: "2026-05-07T08:00:00+05:30"
 draft: false
 description: "Hands-on guide to Ligolo-ng — install, configure, and pivot through one or more compromised hosts using TUN interface tunneling instead of SOCKS proxies."
 categories: ["Tutorial", "Pentesting"]

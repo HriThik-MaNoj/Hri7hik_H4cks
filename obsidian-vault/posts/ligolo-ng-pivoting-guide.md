@@ -1,6 +1,6 @@
 ---
 title: "Ligolo-ng: Single and Double Pivoting Guide"
-date: "2026-05-07T10:00:00+05:30"
+date: "2026-05-07T08:00:00+05:30"
 draft: false
 categories: ["Tutorial", "Pentesting"]
 tags: ["pivoting", "tunneling", "lateral-movement", "post-exploitation", "red-team", "ligolo-ng"]
