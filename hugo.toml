@@ -32,7 +32,7 @@ theme = 'PaperMod'
   socialIcons = [
     { name = "github", url = "https://github.com/HriThik-MaNoj" },
     { name = "linkedin", url = "https://www.linkedin.com/in/hrithikmanoj/" },
-    { name = "twitter", url = "https://twitter.com/yourusername" }
+    { name = "x", url = "https://x.com/_nothrithik" }
   ]
 
   [params.assets]
