@@ -39,10 +39,10 @@ theme = 'PaperMod'
     googleFonts = ["JetBrains Mono:400,500,600", "Inter:400,500,600,700"]
 
   [params.homeInfoParams]
-    title = "Hri7hik H4cks 👾"
-    subtitle = "Field notes from the offensive side."
+    title = "Hri7hik"
+    subtitle = "notes on offensive security"
     content = """
-    A working lab journal — pivots, payloads, and the rabbit holes between them. No SEO filler. Every post is something I actually ran, broke, or reverse-engineered. Welcome in.
+    Hi, I'm Hrithik. I write down what I figure out while breaking things — CTF boxes, tools, the occasional CVE.
     """
 
   [params.label]
