@@ -3,6 +3,8 @@ title: "CPTS Bulletproof Methodology"
 date: "2026-05-17"
 draft: false
 description: "A comprehensive, decision-tree based methodology covering 100% of the CPTS exam. Covers external recon, web app attacks, service exploitation, privilege escalation, Active Directory attacks, pivoting, and more."
+images:
+  - /images/cpts-bulletproof-methodology.jpg
 categories: ["CTF", "Tutorial", "HackTheBox"]
 tags: ["cpts", "pentesting", "methodology", "active-directory", "privilege-escalation", "enumeration"]
 difficulties: ["advanced"]
