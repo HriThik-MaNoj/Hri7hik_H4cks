@@ -2,150 +2,80 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tools on Hri7ik H4cks</title>
-    <link>http://localhost:1313/tools/</link>
+    <link>https://www.hrithikhacks.xyz/tools/</link>
     <description>Recent content in Tools on Hri7ik H4cks</description>
-    <generator>Hugo -- 0.152.2</generator>
+    <generator>Hugo -- 0.161.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 02 Nov 2025 10:28:39 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tools/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 17 May 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.hrithikhacks.xyz/tools/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Bash</title>
-      <link>http://localhost:1313/tools/bash/</link>
-      <pubDate>Sun, 02 Nov 2025 10:28:39 +0000</pubDate>
-      <guid>http://localhost:1313/tools/bash/</guid>
+      <title>Bloodhound</title>
+      <link>https://www.hrithikhacks.xyz/tools/bloodhound/</link>
+      <pubDate>Sun, 17 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.hrithikhacks.xyz/tools/bloodhound/</guid>
       <description></description>
     </item>
     <item>
-      <title>Burp</title>
-      <link>http://localhost:1313/tools/burp/</link>
-      <pubDate>Sun, 02 Nov 2025 10:28:39 +0000</pubDate>
-      <guid>http://localhost:1313/tools/burp/</guid>
+      <title>Crackmapexec</title>
+      <link>https://www.hrithikhacks.xyz/tools/crackmapexec/</link>
+      <pubDate>Sun, 17 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.hrithikhacks.xyz/tools/crackmapexec/</guid>
       <description></description>
     </item>
     <item>
-      <title>Cmd</title>
-      <link>http://localhost:1313/tools/cmd/</link>
-      <pubDate>Sun, 02 Nov 2025 10:28:39 +0000</pubDate>
-      <guid>http://localhost:1313/tools/cmd/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Dvwa</title>
-      <link>http://localhost:1313/tools/dvwa/</link>
-      <pubDate>Sun, 02 Nov 2025 10:28:39 +0000</pubDate>
-      <guid>http://localhost:1313/tools/dvwa/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Git</title>
-      <link>http://localhost:1313/tools/git/</link>
-      <pubDate>Sun, 02 Nov 2025 10:28:39 +0000</pubDate>
-      <guid>http://localhost:1313/tools/git/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Github</title>
-      <link>http://localhost:1313/tools/github/</link>
-      <pubDate>Sun, 02 Nov 2025 10:28:39 +0000</pubDate>
-      <guid>http://localhost:1313/tools/github/</guid>
+      <title>Evil-Winrm</title>
+      <link>https://www.hrithikhacks.xyz/tools/evil-winrm/</link>
+      <pubDate>Sun, 17 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.hrithikhacks.xyz/tools/evil-winrm/</guid>
       <description></description>
     </item>
     <item>
       <title>Hashcat</title>
-      <link>http://localhost:1313/tools/hashcat/</link>
-      <pubDate>Sun, 02 Nov 2025 10:28:39 +0000</pubDate>
-      <guid>http://localhost:1313/tools/hashcat/</guid>
+      <link>https://www.hrithikhacks.xyz/tools/hashcat/</link>
+      <pubDate>Sun, 17 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.hrithikhacks.xyz/tools/hashcat/</guid>
       <description></description>
     </item>
     <item>
-      <title>Java</title>
-      <link>http://localhost:1313/tools/java/</link>
-      <pubDate>Sun, 02 Nov 2025 10:28:39 +0000</pubDate>
-      <guid>http://localhost:1313/tools/java/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>John</title>
-      <link>http://localhost:1313/tools/john/</link>
-      <pubDate>Sun, 02 Nov 2025 10:28:39 +0000</pubDate>
-      <guid>http://localhost:1313/tools/john/</guid>
+      <title>Impacket</title>
+      <link>https://www.hrithikhacks.xyz/tools/impacket/</link>
+      <pubDate>Sun, 17 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.hrithikhacks.xyz/tools/impacket/</guid>
       <description></description>
     </item>
     <item>
       <title>Metasploit</title>
-      <link>http://localhost:1313/tools/metasploit/</link>
-      <pubDate>Sun, 02 Nov 2025 10:28:39 +0000</pubDate>
-      <guid>http://localhost:1313/tools/metasploit/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Mysql</title>
-      <link>http://localhost:1313/tools/mysql/</link>
-      <pubDate>Sun, 02 Nov 2025 10:28:39 +0000</pubDate>
-      <guid>http://localhost:1313/tools/mysql/</guid>
+      <link>https://www.hrithikhacks.xyz/tools/metasploit/</link>
+      <pubDate>Sun, 17 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.hrithikhacks.xyz/tools/metasploit/</guid>
       <description></description>
     </item>
     <item>
       <title>Nmap</title>
-      <link>http://localhost:1313/tools/nmap/</link>
-      <pubDate>Sun, 02 Nov 2025 10:28:39 +0000</pubDate>
-      <guid>http://localhost:1313/tools/nmap/</guid>
+      <link>https://www.hrithikhacks.xyz/tools/nmap/</link>
+      <pubDate>Sun, 17 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.hrithikhacks.xyz/tools/nmap/</guid>
       <description></description>
     </item>
     <item>
-      <title>Sqlmap</title>
-      <link>http://localhost:1313/tools/sqlmap/</link>
-      <pubDate>Sun, 02 Nov 2025 10:28:39 +0000</pubDate>
-      <guid>http://localhost:1313/tools/sqlmap/</guid>
+      <title>Responder</title>
+      <link>https://www.hrithikhacks.xyz/tools/responder/</link>
+      <pubDate>Sun, 17 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.hrithikhacks.xyz/tools/responder/</guid>
       <description></description>
     </item>
     <item>
-      <title>Ssh</title>
-      <link>http://localhost:1313/tools/ssh/</link>
-      <pubDate>Sun, 02 Nov 2025 10:28:39 +0000</pubDate>
-      <guid>http://localhost:1313/tools/ssh/</guid>
+      <title>Go</title>
+      <link>https://www.hrithikhacks.xyz/tools/go/</link>
+      <pubDate>Thu, 07 May 2026 08:00:00 +0530</pubDate>
+      <guid>https://www.hrithikhacks.xyz/tools/go/</guid>
       <description></description>
     </item>
     <item>
-      <title>Telnet</title>
-      <link>http://localhost:1313/tools/telnet/</link>
-      <pubDate>Sat, 01 Nov 2025 21:00:00 +0530</pubDate>
-      <guid>http://localhost:1313/tools/telnet/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Hugo</title>
-      <link>http://localhost:1313/tools/hugo/</link>
-      <pubDate>Sat, 01 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tools/hugo/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>PaperMod</title>
-      <link>http://localhost:1313/tools/papermod/</link>
-      <pubDate>Sat, 01 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tools/papermod/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Docker</title>
-      <link>http://localhost:1313/tools/docker/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tools/docker/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Python</title>
-      <link>http://localhost:1313/tools/python/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tools/python/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Sh</title>
-      <link>http://localhost:1313/tools/sh/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tools/sh/</guid>
+      <title>Ligolo-Ng</title>
+      <link>https://www.hrithikhacks.xyz/tools/ligolo-ng/</link>
+      <pubDate>Thu, 07 May 2026 08:00:00 +0530</pubDate>
+      <guid>https://www.hrithikhacks.xyz/tools/ligolo-ng/</guid>
       <description></description>
     </item>
   </channel>

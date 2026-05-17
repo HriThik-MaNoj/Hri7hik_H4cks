@@ -2,10 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Sh on Hri7ik H4cks</title>
-    <link>http://localhost:1313/tools/sh/</link>
+    <link>https://hri7hik-h4cks.com/tools/sh/</link>
     <description>Recent content in Sh on Hri7ik H4cks</description>
-    <generator>Hugo -- 0.152.2</generator>
+    <generator>Hugo -- 0.160.1</generator>
     <language>en-us</language>
-    <atom:link href="http://localhost:1313/tools/sh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 03 May 2026 21:32:04 +0000</lastBuildDate>
+    <atom:link href="https://hri7hik-h4cks.com/tools/sh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sql Injection Basics And Prevention</title>
+      <link>https://hri7hik-h4cks.com/posts/sql-injection-basics-and-prevention/</link>
+      <pubDate>Sun, 03 May 2026 21:32:04 +0000</pubDate>
+      <guid>https://hri7hik-h4cks.com/posts/sql-injection-basics-and-prevention/</guid>
+      <description> SQL Injection Basics and Prevention</description>
+    </item>
   </channel>
 </rss>

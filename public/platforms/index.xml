@@ -2,24 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Platforms on Hri7ik H4cks</title>
-    <link>http://localhost:1313/platforms/</link>
+    <link>https://www.hrithikhacks.xyz/platforms/</link>
     <description>Recent content in Platforms on Hri7ik H4cks</description>
-    <generator>Hugo -- 0.152.2</generator>
+    <generator>Hugo -- 0.161.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 02 Nov 2025 10:28:39 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/platforms/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 17 May 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.hrithikhacks.xyz/platforms/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>HackTheBox</title>
-      <link>http://localhost:1313/platforms/hackthebox/</link>
-      <pubDate>Sat, 01 Nov 2025 21:00:00 +0530</pubDate>
-      <guid>http://localhost:1313/platforms/hackthebox/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Hugo</title>
-      <link>http://localhost:1313/platforms/hugo/</link>
-      <pubDate>Sat, 01 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/platforms/hugo/</guid>
+      <link>https://www.hrithikhacks.xyz/platforms/hackthebox/</link>
+      <pubDate>Sun, 17 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.hrithikhacks.xyz/platforms/hackthebox/</guid>
       <description></description>
     </item>
   </channel>

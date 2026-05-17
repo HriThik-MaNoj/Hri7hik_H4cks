@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Difficulties on Hri7ik H4cks</title>
-    <link>http://localhost:1313/difficulties/</link>
+    <link>https://www.hrithikhacks.xyz/difficulties/</link>
     <description>Recent content in Difficulties on Hri7ik H4cks</description>
-    <generator>Hugo -- 0.152.2</generator>
+    <generator>Hugo -- 0.161.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 01 Nov 2025 21:00:00 +0530</lastBuildDate>
-    <atom:link href="http://localhost:1313/difficulties/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 17 May 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.hrithikhacks.xyz/difficulties/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Beginner</title>
-      <link>http://localhost:1313/difficulties/beginner/</link>
-      <pubDate>Sat, 01 Nov 2025 21:00:00 +0530</pubDate>
-      <guid>http://localhost:1313/difficulties/beginner/</guid>
+      <title>Advanced</title>
+      <link>https://www.hrithikhacks.xyz/difficulties/advanced/</link>
+      <pubDate>Sun, 17 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.hrithikhacks.xyz/difficulties/advanced/</guid>
       <description></description>
     </item>
     <item>
       <title>Intermediate</title>
-      <link>http://localhost:1313/difficulties/intermediate/</link>
-      <pubDate>Sat, 01 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/difficulties/intermediate/</guid>
+      <link>https://www.hrithikhacks.xyz/difficulties/intermediate/</link>
+      <pubDate>Thu, 07 May 2026 08:00:00 +0530</pubDate>
+      <guid>https://www.hrithikhacks.xyz/difficulties/intermediate/</guid>
       <description></description>
     </item>
   </channel>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Smbclient on Hri7ik H4cks</title>
+    <link>https://www.hrithikhacks.xyz/tools/smbclient/</link>
+    <description>Recent content in Smbclient on Hri7ik H4cks</description>
+    <generator>Hugo -- 0.161.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 04 May 2026 15:00:50 +0000</lastBuildDate>
+    <atom:link href="https://www.hrithikhacks.xyz/tools/smbclient/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hack The Box Lame Walkthrough</title>
+      <link>https://www.hrithikhacks.xyz/posts/hack-the-box-lame-walkthrough/</link>
+      <pubDate>Mon, 04 May 2026 15:00:50 +0000</pubDate>
+      <guid>https://www.hrithikhacks.xyz/posts/hack-the-box-lame-walkthrough/</guid>
+      <description>Platform: Hack The Box Difficulty: Easy Target: 10.10.10.3 Objective: Gain root access and capture the flags &amp;lt;/div&amp;gt; 📋 Table of Contents</description>
+    </item>
+  </channel>
+</rss>

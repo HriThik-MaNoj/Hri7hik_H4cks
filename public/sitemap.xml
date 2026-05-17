@@ -2,245 +2,122 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/tools/bash/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/tags/active-directory/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tools/burp/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/difficulties/advanced/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/tools/bloodhound/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tools/cmd/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/categories/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/cybersecurity/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/tags/cpts/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/difficulties/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/posts/cpts-bulletproof-methodology/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tools/dvwa/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/tools/crackmapexec/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/general/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/categories/ctf/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tools/git/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/difficulties/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tools/github/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/tags/enumeration/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/hack-the-box-lame-walkthrough/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/tools/evil-winrm/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/platforms/hackthebox/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/categories/hackthebox/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tools/hashcat/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/platforms/hackthebox/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/tools/hashcat/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/difficulties/intermediate/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tools/java/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/tools/impacket/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tools/john/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/tools/metasploit/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/log4j-vulnerability-analysis-cve-2021-44228/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/tags/methodology/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tools/metasploit/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/tools/nmap/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tools/mysql/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/tags/pentesting/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tools/nmap/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/platforms/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/nmap-command-reference-cheat-sheet/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/posts/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/platforms/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/tags/privilege-escalation/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/tools/responder/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/sql-injection-basics-and-prevention/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/tags/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tools/sqlmap/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/tools/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tools/ssh/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/categories/tutorial/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tools/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/tools/go/</loc>
+    <lastmod>2026-05-07T08:00:00+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/tutorial/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/difficulties/intermediate/</loc>
+    <lastmod>2026-05-07T08:00:00+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/web-application-security-testing-burp-suite/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/tags/lateral-movement/</loc>
+    <lastmod>2026-05-07T08:00:00+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/web-security/</loc>
-    <lastmod>2025-11-02T10:28:39+00:00</lastmod>
+    <loc>https://www.hrithikhacks.xyz/tags/ligolo-ng/</loc>
+    <lastmod>2026-05-07T08:00:00+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/test/</loc>
-    <lastmod>2025-11-01T22:41:44+05:30</lastmod>
+    <loc>https://www.hrithikhacks.xyz/tools/ligolo-ng/</loc>
+    <lastmod>2026-05-07T08:00:00+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/difficulties/beginner/</loc>
-    <lastmod>2025-11-01T21:00:00+05:30</lastmod>
+    <loc>https://www.hrithikhacks.xyz/posts/ligolo-ng-pivoting-guide/</loc>
+    <lastmod>2026-05-07T08:00:00+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/beginner/</loc>
-    <lastmod>2025-11-01T21:00:00+05:30</lastmod>
+    <loc>https://www.hrithikhacks.xyz/categories/pentesting/</loc>
+    <lastmod>2026-05-07T08:00:00+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/ctf/</loc>
-    <lastmod>2025-11-01T21:00:00+05:30</lastmod>
+    <loc>https://www.hrithikhacks.xyz/tags/pivoting/</loc>
+    <lastmod>2026-05-07T08:00:00+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/enumeration/</loc>
-    <lastmod>2025-11-01T21:00:00+05:30</lastmod>
+    <loc>https://www.hrithikhacks.xyz/tags/post-exploitation/</loc>
+    <lastmod>2026-05-07T08:00:00+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/hackthebox/</loc>
-    <lastmod>2025-11-01T21:00:00+05:30</lastmod>
+    <loc>https://www.hrithikhacks.xyz/tags/red-team/</loc>
+    <lastmod>2026-05-07T08:00:00+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/sample-ctf-walkthrough/</loc>
-    <lastmod>2025-11-01T21:00:00+05:30</lastmod>
+    <loc>https://www.hrithikhacks.xyz/tags/tunneling/</loc>
+    <lastmod>2026-05-07T08:00:00+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/network/</loc>
-    <lastmod>2025-11-01T21:00:00+05:30</lastmod>
+    <loc>https://www.hrithikhacks.xyz/gemini/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2025-11-01T21:00:00+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/telnet/</loc>
-    <lastmod>2025-11-01T21:00:00+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tools/telnet/</loc>
-    <lastmod>2025-11-01T21:00:00+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/walkthrough/</loc>
-    <lastmod>2025-11-01T21:00:00+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/the-importance-of-strong-passwords/</loc>
-    <lastmod>2025-11-01T20:27:39+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/data-breaches-and-how-to-prevent-them/</loc>
-    <lastmod>2025-11-01T20:26:39+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/top-5-antivirus-software/</loc>
-    <lastmod>2025-11-01T20:25:39+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/best-practices/</loc>
-    <lastmod>2025-11-01T20:24:39+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/cybersecurity/</loc>
-    <lastmod>2025-11-01T20:24:39+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/encryption/</loc>
-    <lastmod>2025-11-01T20:24:39+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/how-to-secure-your-wifi/</loc>
-    <lastmod>2025-11-01T20:24:39+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/network-security/</loc>
-    <lastmod>2025-11-01T20:24:39+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/network-security/</loc>
-    <lastmod>2025-11-01T20:24:39+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/wifi/</loc>
-    <lastmod>2025-11-01T20:24:39+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/wireless/</loc>
-    <lastmod>2025-11-01T20:24:39+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/awareness/</loc>
-    <lastmod>2025-11-01T20:23:39+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/cybersecurity-awareness/</loc>
-    <lastmod>2025-11-01T20:23:39+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/email-security/</loc>
-    <lastmod>2025-11-01T20:23:39+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/phishing/</loc>
-    <lastmod>2025-11-01T20:23:39+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/security-training/</loc>
-    <lastmod>2025-11-01T20:23:39+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/social-engineering/</loc>
-    <lastmod>2025-11-01T20:23:39+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/social-engineering/</loc>
-    <lastmod>2025-11-01T20:23:39+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/what-is-phishing/</loc>
-    <lastmod>2025-11-01T20:23:39+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/hello-world/</loc>
-    <lastmod>2025-11-01T20:08:15+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/blog/</loc>
-    <lastmod>2025-11-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/blogging/</loc>
-    <lastmod>2025-11-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/building-a-cybersecurity-blog-with-hugo/</loc>
-    <lastmod>2025-11-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/development/</loc>
-    <lastmod>2025-11-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/guide/</loc>
-    <lastmod>2025-11-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/how-to-create-a-blog-complete-guide/</loc>
-    <lastmod>2025-11-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/platforms/hugo/</loc>
-    <lastmod>2025-11-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/hugo/</loc>
-    <lastmod>2025-11-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tools/hugo/</loc>
-    <lastmod>2025-11-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/papermod/</loc>
-    <lastmod>2025-11-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tools/papermod/</loc>
-    <lastmod>2025-11-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/static-site-generator/</loc>
-    <lastmod>2025-11-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/theme/</loc>
-    <lastmod>2025-11-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/website/</loc>
-    <lastmod>2025-11-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/gemini/</loc>
-  </url><url>
-    <loc>http://localhost:1313/about/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tools/docker/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tools/python/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tools/sh/</loc>
+    <loc>https://www.hrithikhacks.xyz/about/</loc>
   </url>
 </urlset>
