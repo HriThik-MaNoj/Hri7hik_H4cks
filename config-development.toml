@@ -2,7 +2,7 @@
 # This overrides baseURL for local development
 
 baseURL = 'http://localhost:1313/'
-languageCode = 'en-us'
+locale = 'en-us'
 title = 'Hri7ik H4cks'
 theme = 'PaperMod'
 

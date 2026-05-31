@@ -1,44 +1,33 @@
-# Obsidian to Hugo Converter Configuration
+# Obsidian → Hugo Converter Configuration
 # ========================================
+# All keys are optional — defaults live in DEFAULT_CONFIG inside
+# scripts/obsidian_to_hugo_converter.py. Override only what you need.
 
-# Source and destination paths
+# Paths
 obsidian_vault: "./obsidian-vault"
-hugo_content: "./content/posts"
-hugo_static: "./static/images"
-
-# Image handling settings
-auto_copy_images: true
-optimize_images: true
-image_max_width: 1200
-image_quality: 85
-
-# Obsidian specific settings
+hugo_content:   "./content/posts"
+hugo_static:    "./static/images"
 obsidian_attachments_folder: "attachments"
-image_storage_strategy: "by-post"  # Options: "by-post", "by-type", "flat"
+
+# Image handling
+auto_copy_images:  true
+optimize_images:   true
+image_max_width:   1200
+image_quality:     85
 
 # Front matter generation
 create_missing_frontmatter: true
-default_draft: false
+default_draft:      false
 default_categories: ["General"]
 
-# Auto-extraction settings
-auto_extract_tools: true
-auto_extract_platforms: true
+# Auto-extraction (taxonomy enrichment)
+auto_extract_tools:      true
+auto_extract_platforms:  true
 auto_extract_difficulty: true
-generate_description: true
+generate_description:    true
 
-# Default taxonomies for new posts
-default_difficulties: ["beginner"]
-default_platforms: ["General"]
-default_tools: []
-
-# Filename to title conversion
-auto_generate_title: true
-title_case: true
-
-# Watch mode settings
-watch_interval: 5  # seconds
-
-# Logging
-log_level: "INFO"  # Options: DEBUG, INFO, WARNING, ERROR
-verbose: true
+# Performance
+# cache_dir: where the SHA-1 manifest lives. Anything in there is safe to delete.
+# max_workers: 0 ⇒ auto (cpu_count, capped at job count). Set to 1 to force serial.
+cache_dir:   ".cache/o2h"
+max_workers: 0

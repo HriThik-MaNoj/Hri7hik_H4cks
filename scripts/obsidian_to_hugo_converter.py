@@ -1,420 +1,572 @@
 #!/usr/bin/env python3
 """
-Obsidian to Hugo Converter
-===========================
-Converts Obsidian-flavored markdown to Hugo-compatible markdown with automated image handling,
-syntax conversion, and front matter generation.
+obsidian_to_hugo_converter.py
+=============================
+Fast, incremental Obsidian → Hugo converter.
+
+Design goals
+------------
+- Idempotent: same input ⇒ identical output, byte-for-byte.
+- Incremental: skip files whose source SHA-1 matches the last successful run.
+- Parallel: thread pool for IO + Pillow (PIL releases the GIL during encode).
+- Pre-compiled regex: every pattern compiled once at module load.
+- Single read: source bytes are read exactly once and reused for hash + body.
+- Defensive: malformed YAML, missing images, and empty configs degrade
+  gracefully with a logged warning rather than aborting the whole run.
 """
 
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import logging
 import os
 import re
-import yaml
 import shutil
+import sys
+import threading
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from dataclasses import dataclass, field
+from datetime import datetime, timezone
 from pathlib import Path
-from datetime import datetime
-from typing import Dict, List, Optional
-import frontmatter
+from typing import Any, Iterable
+
+import yaml
 from PIL import Image
-import argparse
 
 
-class ObsidianToHugoConverter:
-    """Converts Obsidian markdown to Hugo-compatible markdown."""
+# ─── Logging ──────────────────────────────────────────────────────────────────
 
-    def __init__(self, config_path: str = "scripts/config.yaml"):
-        """Initialize the converter with configuration."""
-        self.config = self.load_config(config_path)
-        self.processed_images = set()
+class _Color:
+    R = "\033[0;31m"; G = "\033[0;32m"; Y = "\033[1;33m"
+    B = "\033[0;34m"; C = "\033[0;36m"; D = "\033[2m"; X = "\033[0m"
 
-    def load_config(self, config_path: str) -> Dict:
-        """Load configuration from YAML file."""
-        default_config = {
-            "obsidian_vault": "./obsidian-vault",
-            "hugo_content": "./content/posts",
-            "hugo_static": "./static/images",
-            "auto_copy_images": True,
-            "optimize_images": True,
-            "image_max_width": 1200,
-            "image_quality": 85,
-            "create_missing_frontmatter": True,
-            "default_draft": False,
-            "default_categories": ["General"],
-            "obsidian_attachments_folder": "attachments",
-            "image_storage_strategy": "by-post"
-        }
 
-        if os.path.exists(config_path):
-            with open(config_path, 'r') as f:
-                user_config = yaml.safe_load(f)
-                default_config.update(user_config)
+class _Fmt(logging.Formatter):
+    LVL = {
+        "DEBUG":   f"{_Color.D}[dbg ]{_Color.X}",
+        "INFO":    f"{_Color.B}[INFO]{_Color.X}",
+        "WARNING": f"{_Color.Y}[WARN]{_Color.X}",
+        "ERROR":   f"{_Color.R}[ERR ]{_Color.X}",
+    }
+    OK = f"{_Color.G}[ OK ]{_Color.X}"
 
-        return default_config
+    def format(self, rec: logging.LogRecord) -> str:
+        prefix = self.OK if getattr(rec, "ok", False) else self.LVL.get(rec.levelname, rec.levelname)
+        return f"{prefix} {rec.getMessage()}"
 
-    def process_file(self, obsidian_file: Path, output_file: Path) -> None:
-        """Process a single Obsidian markdown file and convert it to Hugo format."""
-        print(f"Converting: {obsidian_file} -> {output_file}")
 
-        # Read the Obsidian markdown file
-        with open(obsidian_file, 'r', encoding='utf-8') as f:
-            content = f.read()
+def _setup_logging(verbose: bool) -> None:
+    h = logging.StreamHandler(sys.stderr)
+    h.setFormatter(_Fmt())
+    logging.basicConfig(
+        level=logging.DEBUG if verbose else logging.INFO,
+        handlers=[h],
+        force=True,
+    )
 
-        # Handle front matter
-        content, front_matter = self.extract_and_process_frontmatter(content, obsidian_file)
 
-        # Convert Obsidian-specific syntax to Hugo-compatible syntax
-        content = self.convert_wikilinks_to_links(content)
-        content = self.convert_callouts(content)
-        content = self.add_copy_buttons_to_codeblocks(content)
+log = logging.getLogger("o2h")
 
-        # Process images
-        content = self.process_images_in_content(content, obsidian_file.parent)
 
-        # Write the converted content
-        self.write_converted_file(output_file, content, front_matter)
+def _ok(msg: str) -> None:
+    log.info(msg, extra={"ok": True})
 
-    def extract_and_process_frontmatter(self, content: str, file_path: Path) -> tuple:
-        """Extract and process front matter from markdown."""
-        # Check if file already has front matter
-        if content.startswith('---'):
-            # Split existing front matter and content
-            parts = content.split('---', 2)
-            if len(parts) >= 3:
-                existing_frontmatter = yaml.safe_load(parts[1])
-                content = parts[2]
-            else:
-                existing_frontmatter = {}
-        else:
-            existing_frontmatter = {}
 
-        # Generate front matter if needed
-        front_matter = self.generate_frontmatter(file_path, existing_frontmatter)
+# ─── Pre-compiled patterns (compile once, reuse forever) ──────────────────────
 
-        return content, front_matter
+_RE_FRONTMATTER = re.compile(r"^---\s*\n(.*?\n)---\s*\n?", re.DOTALL)
+_RE_WIKILINK    = re.compile(r"\[\[([^\]|]+)(?:\|([^\]]+))?\]\]")
+_RE_CALLOUT     = re.compile(r"^> \[!(\w+)\][ \t]*([^\n]*)\n((?:^>.*\n?)*)", re.MULTILINE)
+_RE_CODEBLOCK   = re.compile(r"```([\w+\-]*)\n(.*?)```", re.DOTALL)
+_RE_IMAGE       = re.compile(r"!\[([^\]]*)\]\(([^)\s]+)\)")
+_RE_DIFFICULTY  = re.compile(r"\bdifficulty[:\s\"']+(beginner|intermediate|advanced)\b", re.IGNORECASE)
+_RE_PLATFORMS   = re.compile(r"\b(hackthebox|tryhackme|picoctf|vulnhub|overthewire)\b", re.IGNORECASE)
+# Tools: matched ONLY inside fenced code blocks → drastically fewer false positives.
+_RE_TOOL = re.compile(
+    r"\b(nmap|netcat|wireshark|burp(?:suite)?|sqlmap|metasploit|msfvenom|john|hashcat|"
+    r"gobuster|dirb|dirbuster|nikto|nessus|openvas|hydra|aircrack-ng|responder|impacket|"
+    r"crackmapexec|bloodhound|ffuf|wfuzz|enum4linux|smbclient|smbmap|rpcclient|"
+    r"evil-winrm|chisel|ligolo|mimikatz)\b",
+    re.IGNORECASE,
+)
+_RE_MD_NOISE = re.compile(r"[*_`#\[\]()]+")
+_RE_MULTISPACE = re.compile(r"\s+")
 
-    def generate_frontmatter(self, file_path: Path, existing_frontmatter: Dict) -> Dict:
-        """Generate Hugo front matter from filename and content."""
-        if not self.config["create_missing_frontmatter"] and existing_frontmatter:
-            return existing_frontmatter
+CALLOUT_MAP: dict[str, tuple[str, str]] = {
+    "note":     ("callout-info",    "📝"),
+    "info":     ("callout-info",    "ℹ️"),
+    "tip":      ("callout-success", "💡"),
+    "success":  ("callout-success", "✅"),
+    "warning":  ("callout-warning", "⚠️"),
+    "danger":   ("callout-danger",  "🚨"),
+    "question": ("callout-info",    "❓"),
+    "abstract": ("callout-info",    "📄"),
+    "example":  ("callout-success", "📌"),
+}
 
-        front_matter = existing_frontmatter.copy() if existing_frontmatter else {}
+DEFAULT_CONFIG: dict[str, Any] = {
+    "obsidian_vault":               "./obsidian-vault",
+    "hugo_content":                 "./content/posts",
+    "hugo_static":                  "./static/images",
+    "obsidian_attachments_folder":  "attachments",
+    "auto_copy_images":             True,
+    "optimize_images":              True,
+    "image_max_width":              1200,
+    "image_quality":                85,
+    "create_missing_frontmatter":   True,
+    "default_draft":                False,
+    "default_categories":           ["General"],
+    "auto_extract_tools":           True,
+    "auto_extract_platforms":       True,
+    "auto_extract_difficulty":      True,
+    "generate_description":         True,
+    "cache_dir":                    ".cache/o2h",
+    "max_workers":                  0,   # 0 = auto (cpu_count, capped at job count)
+}
 
-        # Generate title from filename if not present
-        if 'title' not in front_matter:
-            front_matter['title'] = self.title_from_filename(file_path.stem)
 
-        # Generate date from file creation if not present
-        if 'date' not in front_matter:
-            try:
-                timestamp = file_path.stat().st_ctime
-                front_matter['date'] = datetime.fromtimestamp(timestamp).strftime('%Y-%m-%dT%H:%M:%S%z')
-            except:
-                front_matter['date'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%S%z')
+# ─── Config loader ────────────────────────────────────────────────────────────
 
-        # Set draft status
-        if 'draft' not in front_matter:
-            front_matter['draft'] = self.config["default_draft"]
-
-        # Add default categories if none exist
-        if 'categories' not in front_matter:
-            front_matter['categories'] = self.config["default_categories"]
-
-        # Extract metadata from content
-        self.extract_metadata_from_content(front_matter, file_path.read_text(encoding='utf-8'))
-
-        return front_matter
-
-    def title_from_filename(self, filename: str) -> str:
-        """Convert filename to title case."""
-        # Replace underscores and hyphens with spaces
-        title = filename.replace('_', ' ').replace('-', ' ')
-        # Title case
-        title = ' '.join(word.capitalize() for word in title.split())
-        return title
-
-    def extract_metadata_from_content(self, front_matter: Dict, content: str) -> None:
-        """Extract metadata from content (difficulty, platforms, tools, etc.)."""
-        # Extract difficulty level from content
-        difficulty_match = re.search(r' difficulty["\s:]+(beginner|intermediate|advanced)', content, re.IGNORECASE)
-        if difficulty_match and 'difficulties' not in front_matter:
-            front_matter['difficulties'] = [difficulty_match.group(1).lower()]
-
-        # Extract platforms mentioned
-        platforms = set()
-        platform_keywords = ['hackthebox', 'tryhackme', 'picoctf', 'vulnhub', 'overthewire']
-        for keyword in platform_keywords:
-            if keyword.lower() in content.lower():
-                platforms.add(keyword)
-        if platforms and 'platforms' not in front_matter:
-            front_matter['platforms'] = list(platforms)
-
-        # Extract tools mentioned
-        tools = set()
-        tool_patterns = [
-            r'\b(nmap|netcat|nc|telnet|ssh|wireshark|burp|burpsuite|sqlmap|metasploit|msfvenom|john|hashcat|gobuster|dirb|dirbuster|nikto|nessus|openvas)\b',
-            r'\b(git|docker|docker-compose|kubectl|helm|ansible|terraform|jenkins|github|gitlab)\b',
-            r'\b(python|python3|bash|sh|powershell|cmd|java|node|npm|yarn)\b'
-        ]
-        for pattern in tool_patterns:
-            matches = re.findall(pattern, content, re.IGNORECASE)
-            for match in matches:
-                tools.add(match.lower())
-        if tools and 'tools' not in front_matter:
-            front_matter['tools'] = list(tools)
-
-        # Generate description from first paragraph
-        paragraphs = [p.strip() for p in content.split('\n\n') if p.strip()]
-        if paragraphs and 'description' not in front_matter:
-            first_para = paragraphs[0].strip()
-            # Remove markdown formatting
-            first_para = re.sub(r'[*_`#\[\]()]+', '', first_para)
-            # Truncate to 160 characters
-            if len(first_para) > 160:
-                first_para = first_para[:157] + '...'
-            front_matter['description'] = first_para
-
-    def convert_wikilinks_to_links(self, content: str) -> str:
-        """Convert Obsidian [[wikilinks]] to standard markdown links."""
-        # Pattern: [[link]] or [[link|text]]
-        pattern = r'\[\[([^\]|]+)(?:\|([^\]]+))?\]\]'
-        def replace_wikilink(match):
-            link_text = match.group(1).strip()
-            display_text = match.group(2).strip() if match.group(2) else link_text
-            # Convert to kebab-case for Hugo
-            hugo_link = link_text.lower().replace(' ', '-').replace('_', '-')
-            return f'[{display_text}](/{hugo_link})'
-        return re.sub(pattern, replace_wikilink, content)
-
-    def convert_callouts(self, content: str) -> str:
-        """Convert Obsidian callout syntax to HTML callout divs."""
-        # Obsidian callout syntax: > [!note] Title
-        # Convert to: <div class="callout callout-info"><div class="callout-title">📋 Title</div>content</div>
-
-        callout_types = {
-            'note': ('callout-info', '📝'),
-            'info': ('callout-info', 'ℹ️'),
-            'tip': ('callout-success', '💡'),
-            'success': ('callout-success', '✅'),
-            'warning': ('callout-warning', '⚠️'),
-            'danger': ('callout-danger', '🚨'),
-            'question': ('callout-info', '❓'),
-            'abstract': ('callout-info', '📄'),
-            'example': ('callout-success', '📌'),
-        }
-
-        # Pattern for Obsidian callouts
-        pattern = r'> \[!(\w+)\]\s*([^\n]+)?\n((?:>.*\n)*)'
-
-        def replace_callout(match):
-            callout_type = match.group(1).lower()
-            callout_title = match.group(2).strip() if match.group(2) else ''
-            callout_content = match.group(3)
-
-            if callout_type in callout_types:
-                css_class, icon = callout_types[callout_type]
-            else:
-                css_class, icon = 'callout-info', '📄'
-
-            if not callout_title:
-                callout_title = icon + ' ' + callout_type.capitalize()
-
-            # Clean the content (remove > prefixes)
-            callout_content = '\n'.join(line[2:] if line.startswith('> ') else line for line in callout_content.split('\n'))
-
-            return f'<div class="callout {css_class}">\n<div class="callout-title">{callout_title}</div>\n{callout_content}\n</div>'
-
-        return re.sub(pattern, replace_callout, content)
-
-    def add_copy_buttons_to_codeblocks(self, content: str) -> str:
-        """Add copy button markers to code blocks."""
-        # This is a marker - the actual JavaScript will handle the copy buttons
-        # Pattern: ```lang\ncode\n```
-        pattern = r'(```)(\w+)?\n(.*?)(```)'
-
-        def replace_codeblock(match):
-            lang = match.group(2) if match.group(2) else ''
-            code = match.group(3)
-
-            # Add marker for copy button
-            return f'{match.group(1)}{lang}\n{code}\n{match.group(4)}\n\n<!-- COPY_BUTTON -->'
-
-        return re.sub(pattern, replace_codeblock, content, flags=re.DOTALL)
-
-    def process_images_in_content(self, content: str, source_dir: Path) -> str:
-        """Process images in content - copy them and update references."""
-        if not self.config["auto_copy_images"]:
-            return content
-
-        # Pattern: ![alt](image.jpg) or ![alt](attachments/image.jpg)
-        image_pattern = r'!\[([^\]]*)\]\(([^)]+)\)'
-
-        def replace_image(match):
-            alt_text = match.group(1)
-            image_path = match.group(2)
-
-            # Skip if already absolute URL or external link
-            if image_path.startswith(('http://', 'https://', '/')):
-                return match.group(0)
-
-            # Handle Obsidian attachments folder
-            if image_path.startswith('attachments/'):
-                image_path = image_path[12:]  # Remove 'attachments/'
-
-            # Find the image file
-            full_image_path = source_dir / image_path
-            if not full_image_path.exists():
-                # Try in attachments folder
-                full_image_path = source_dir / self.config["obsidian_attachments_folder"] / image_path
-                if not full_image_path.exists():
-                    print(f"Warning: Image not found: {image_path}")
-                    return match.group(0)
-
-            # Copy and optimize image
-            hugo_image_path = self.copy_and_optimize_image(full_image_path)
-
-            # Return updated reference
-            return f'![{alt_text}](/images/{hugo_image_path})'
-
-        return re.sub(image_pattern, replace_image, content)
-
-    def copy_and_optimize_image(self, source_image_path: Path) -> str:
-        """Copy and optimize image for Hugo static folder."""
-        # Generate destination filename
-        dest_filename = source_image_path.name
-        dest_path = Path(self.config["hugo_static"]) / dest_filename
-
-        # Handle duplicate filenames
-        counter = 1
-        original_dest = dest_path
-        while dest_path.exists() and dest_path not in self.processed_images:
-            stem = source_image_path.stem
-            suffix = source_image_path.suffix
-            dest_filename = f"{stem}_{counter}{suffix}"
-            dest_path = Path(self.config["hugo_static"]) / dest_filename
-            counter += 1
-
-        self.processed_images.add(dest_path)
-
-        # Copy file if not already processed
-        if not dest_path.exists() or source_image_path.stat().st_mtime > dest_path.stat().st_mtime:
-            # Create directory if needed
-            dest_path.parent.mkdir(parents=True, exist_ok=True)
-
-            # Optimize if enabled
-            if self.config["optimize_images"] and source_image_path.suffix.lower() in ['.jpg', '.jpeg', '.png']:
-                self.optimize_image(source_image_path, dest_path)
-            else:
-                shutil.copy2(source_image_path, dest_path)
-
-            print(f"  Image processed: {source_image_path.name} -> {dest_filename}")
-
-        return dest_filename
-
-    def optimize_image(self, source: Path, dest: Path) -> None:
-        """Optimize image size and quality."""
+def load_config(path: str | Path) -> dict[str, Any]:
+    cfg = DEFAULT_CONFIG.copy()
+    p = Path(path)
+    if p.is_file():
         try:
-            with Image.open(source) as img:
-                # Convert to RGB if necessary
-                if img.mode in ('RGBA', 'LA', 'P'):
-                    background = Image.new('RGB', img.size, (255, 255, 255))
-                    if img.mode == 'P':
-                        img = img.convert('RGBA')
-                    background.paste(img, mask=img.split()[-1] if img.mode == 'RGBA' else None)
-                    img = background
-
-                # Resize if too large
-                max_width = self.config["image_max_width"]
-                if img.width > max_width:
-                    ratio = max_width / img.width
-                    new_height = int(img.height * ratio)
-                    img = img.resize((max_width, new_height), Image.Resampling.LANCZOS)
-
-                # Save with quality setting
-                img.save(dest, 'JPEG', quality=self.config["image_quality"], optimize=True)
-        except Exception as e:
-            print(f"Warning: Could not optimize {source.name}: {e}")
-            shutil.copy2(source, dest)
-
-    def write_converted_file(self, output_path: Path, content: str, front_matter: Dict) -> None:
-        """Write the converted markdown file with front matter."""
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-
-        # Manually format front matter for Hugo compatibility
-        # Use inline array syntax: key: ["value1", "value2"]
-        lines = []
-        for key, value in front_matter.items():
-            if isinstance(value, list):
-                # Format list as inline array with quoted values
-                formatted_values = [f'"{v}"' if isinstance(v, str) else str(v) for v in value]
-                lines.append(f'{key}: [{", ".join(formatted_values)}]')
-            elif isinstance(value, bool):
-                # Format boolean properly
-                lines.append(f'{key}: {str(value).lower()}')
+            with p.open("r", encoding="utf-8") as f:
+                user = yaml.safe_load(f) or {}
+            if isinstance(user, dict):
+                cfg.update(user)
             else:
-                # Format string/number with quotes
-                lines.append(f'{key}: "{value}"')
+                log.warning(f"{p} did not parse to a mapping — ignoring")
+        except yaml.YAMLError as e:
+            log.warning(f"Bad YAML in {p}: {e} — using defaults")
+    return cfg
 
-        front_matter_yaml = '\n'.join(lines)
 
-        # Write file
-        with open(output_path, 'w', encoding='utf-8') as f:
-            f.write('---\n')
-            f.write(front_matter_yaml)
-            f.write('\n---\n\n')
-            f.write(content)
+# ─── Incremental cache (SHA-1 manifest) ───────────────────────────────────────
 
-    def process_directory(self, source_dir: str, output_dir: str) -> None:
-        """Process all markdown files in a directory."""
-        source_path = Path(source_dir)
-        output_path = Path(output_dir)
+@dataclass
+class Cache:
+    path: Path
+    entries: dict[str, str] = field(default_factory=dict)
 
-        # Find all markdown files
-        markdown_files = list(source_path.rglob("*.md"))
-
-        print(f"\nFound {len(markdown_files)} markdown files to convert\n")
-
-        for obsidian_file in markdown_files:
-            # Generate output filename (preserve directory structure)
-            rel_path = obsidian_file.relative_to(source_path)
-
-            # Skip files in certain directories
-            if any(part.startswith('.') for part in rel_path.parts):
-                continue
-
-            # Remove 'posts' subdirectory from path if it exists
-            # obsidian-vault/posts/*.md should go to content/posts/*.md (not content/posts/posts/*.md)
-            if len(rel_path.parts) > 0 and rel_path.parts[0] == 'posts':
-                rel_path = Path(*rel_path.parts[1:])
-
-            output_file = output_path / rel_path
-
+    @classmethod
+    def load(cls, cache_file: Path) -> "Cache":
+        if cache_file.is_file():
             try:
-                self.process_file(obsidian_file, output_file)
+                return cls(path=cache_file, entries=json.loads(cache_file.read_text()))
+            except (json.JSONDecodeError, OSError) as e:
+                log.debug(f"cache load failed ({e}) — fresh start")
+        return cls(path=cache_file)
+
+    def save(self) -> None:
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        # Compact JSON keeps the manifest tiny on disk.
+        self.path.write_text(json.dumps(self.entries, separators=(",", ":")))
+
+    def is_unchanged(self, key: str, digest: str) -> bool:
+        return self.entries.get(key) == digest
+
+
+def _sha1(data: bytes) -> str:
+    return hashlib.sha1(data).hexdigest()
+
+
+# ─── Converter core ───────────────────────────────────────────────────────────
+
+class Converter:
+    """Stateless transforms + a thread-safe image dedup cache."""
+
+    def __init__(self, config: dict[str, Any]):
+        self.cfg = config
+        self.attach_name = config["obsidian_attachments_folder"]
+        self.image_dest_root = Path(config["hugo_static"]).resolve()
+        self._images_done: dict[Path, str] = {}
+        self._images_lock = threading.Lock()
+
+    # ─── Front matter ────────────────────────────────────────────────────────
+
+    @staticmethod
+    def _split_frontmatter(text: str) -> tuple[dict, str]:
+        m = _RE_FRONTMATTER.match(text)
+        if not m:
+            return {}, text
+        try:
+            fm = yaml.safe_load(m.group(1)) or {}
+        except yaml.YAMLError as e:
+            log.warning(f"Malformed front matter — keeping body, dropping fm: {e}")
+            return {}, text[m.end():]
+        return fm if isinstance(fm, dict) else {}, text[m.end():]
+
+    @staticmethod
+    def _title_from_filename(stem: str) -> str:
+        return " ".join(w.capitalize() for w in stem.replace("_", " ").replace("-", " ").split())
+
+    def _fill_frontmatter(self, fm: dict, src: Path, body: str) -> dict:
+        if not self.cfg["create_missing_frontmatter"]:
+            return dict(fm)
+
+        fm = dict(fm)
+        fm.setdefault("title", self._title_from_filename(src.stem))
+
+        if "date" not in fm:
+            ts = src.stat().st_mtime
+            fm["date"] = datetime.fromtimestamp(ts, tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+        fm.setdefault("draft", self.cfg["default_draft"])
+        fm.setdefault("categories", list(self.cfg["default_categories"]))
+
+        if self.cfg["auto_extract_difficulty"] and "difficulties" not in fm:
+            m = _RE_DIFFICULTY.search(body)
+            if m:
+                fm["difficulties"] = [m.group(1).lower()]
+
+        if self.cfg["auto_extract_platforms"] and "platforms" not in fm:
+            plats = {p.lower() for p in _RE_PLATFORMS.findall(body)}
+            if plats:
+                fm["platforms"] = sorted(plats)
+
+        if self.cfg["auto_extract_tools"] and "tools" not in fm:
+            # Tools harvested ONLY from inside fenced code → no prose noise.
+            tools: set[str] = set()
+            for cb in _RE_CODEBLOCK.finditer(body):
+                tools.update(t.lower() for t in _RE_TOOL.findall(cb.group(2)))
+            if tools:
+                fm["tools"] = sorted(tools)
+
+        if self.cfg["generate_description"] and "description" not in fm:
+            for para in body.split("\n\n"):
+                p = para.strip()
+                if not p or p.startswith(("#", "<", ">", "```", "---")):
+                    continue
+                cleaned = _RE_MULTISPACE.sub(" ", _RE_MD_NOISE.sub("", p)).strip()
+                if cleaned:
+                    fm["description"] = cleaned[:157] + "..." if len(cleaned) > 160 else cleaned
+                    break
+
+        return fm
+
+    # ─── Inline transforms ───────────────────────────────────────────────────
+
+    @staticmethod
+    def _wikilink_repl(m: re.Match) -> str:
+        target = m.group(1).strip()
+        label = (m.group(2) or target).strip()
+        slug = _RE_MULTISPACE.sub("-", target).lower().replace("_", "-")
+        return f"[{label}](/posts/{slug}/)"
+
+    @classmethod
+    def transform_wikilinks(cls, text: str) -> str:
+        return _RE_WIKILINK.sub(cls._wikilink_repl, text)
+
+    @staticmethod
+    def _callout_repl(m: re.Match) -> str:
+        kind = m.group(1).lower()
+        title = (m.group(2) or "").strip()
+        body = m.group(3)
+        cls, icon = CALLOUT_MAP.get(kind, ("callout-info", "📄"))
+        if not title:
+            title = f"{icon} {kind.capitalize()}"
+        # Strip the leading "> " from each continuation line.
+        lines = [
+            ln[2:] if ln.startswith("> ") else (ln[1:].lstrip() if ln.startswith(">") else ln)
+            for ln in body.splitlines()
+        ]
+        inner = "\n".join(lines).rstrip()
+        return (
+            f'<div class="callout {cls}">\n'
+            f'<div class="callout-title">{title}</div>\n\n'
+            f"{inner}\n"
+            f"</div>"
+        )
+
+    @classmethod
+    def transform_callouts(cls, text: str) -> str:
+        return _RE_CALLOUT.sub(cls._callout_repl, text)
+
+    @staticmethod
+    def add_copy_markers(text: str) -> str:
+        return _RE_CODEBLOCK.sub(
+            lambda m: f"```{m.group(1)}\n{m.group(2)}```\n\n<!-- COPY_BUTTON -->",
+            text,
+        )
+
+    # ─── Images ──────────────────────────────────────────────────────────────
+
+    def transform_images(self, text: str, src_dir: Path) -> str:
+        if not self.cfg["auto_copy_images"]:
+            return text
+
+        attach = self.attach_name
+
+        def repl(m: re.Match) -> str:
+            alt, ref = m.group(1), m.group(2)
+            if ref.startswith(("http://", "https://", "/")):
+                return m.group(0)
+
+            tail = ref[len(attach) + 1:] if ref.startswith(attach + "/") else ref
+            for cand in (
+                src_dir / ref,
+                src_dir / attach / tail,
+                src_dir.parent / attach / tail,
+            ):
+                if cand.is_file():
+                    name = self._copy_image(cand.resolve())
+                    return f"![{alt}](/images/{name})"
+
+            log.warning(f"Image not found: {ref} (relative to {src_dir})")
+            return m.group(0)
+
+        return _RE_IMAGE.sub(repl, text)
+
+    def _copy_image(self, src: Path) -> str:
+        # Fast path: already handled in this run.
+        with self._images_lock:
+            cached = self._images_done.get(src)
+            if cached is not None:
+                return cached
+
+        # Heavy work outside the lock; mtime gate makes duplicate work harmless.
+        self.image_dest_root.mkdir(parents=True, exist_ok=True)
+        dest = self.image_dest_root / src.name
+        if (not dest.exists()) or src.stat().st_mtime > dest.stat().st_mtime:
+            ext = src.suffix.lower()
+            if self.cfg["optimize_images"] and ext in {".jpg", ".jpeg", ".png"}:
+                self._optimize_image(src, dest)
+            else:
+                shutil.copy2(src, dest)
+            log.debug(f"image: {src.name} → {dest.name}")
+
+        with self._images_lock:
+            self._images_done[src] = dest.name
+        return dest.name
+
+    def _optimize_image(self, src: Path, dest: Path) -> None:
+        try:
+            with Image.open(src) as img:
+                ext = src.suffix.lower()
+
+                # Resize only when wider than the configured cap.
+                mw = int(self.cfg["image_max_width"])
+                if img.width > mw:
+                    h = round(img.height * mw / img.width)
+                    img = img.resize((mw, h), Image.Resampling.LANCZOS)
+
+                if ext in (".jpg", ".jpeg"):
+                    if img.mode != "RGB":
+                        img = img.convert("RGB")
+                    img.save(dest, "JPEG", quality=int(self.cfg["image_quality"]), optimize=True)
+                else:
+                    # Preserve transparency for PNGs — never silently re-encode as JPEG.
+                    img.save(dest, "PNG", optimize=True)
+        except Exception as e:
+            log.warning(f"Optimize failed ({src.name}): {e} — copying raw")
+            shutil.copy2(src, dest)
+
+    # ─── Front matter writer (Hugo-friendly inline arrays) ───────────────────
+
+    @staticmethod
+    def _yaml_scalar(v: Any) -> str:
+        if isinstance(v, bool):
+            return "true" if v else "false"
+        if isinstance(v, (int, float)):
+            return str(v)
+        s = str(v).replace("\\", "\\\\").replace('"', '\\"')
+        return f'"{s}"'
+
+    def _kv(self, k: str, v: Any) -> str:
+        if isinstance(v, list):
+            inner = ", ".join(self._yaml_scalar(x) for x in v)
+            return f"{k}: [{inner}]"
+        return f"{k}: {self._yaml_scalar(v)}"
+
+    _PRIMARY = ("title", "date", "draft", "description",
+                "categories", "tags", "difficulties", "platforms", "tools")
+
+    def render_frontmatter(self, fm: dict) -> str:
+        seen: set[str] = set()
+        lines: list[str] = []
+        for k in self._PRIMARY:
+            if k in fm:
+                lines.append(self._kv(k, fm[k]))
+                seen.add(k)
+        for k, v in fm.items():
+            if k not in seen:
+                lines.append(self._kv(k, v))
+        return "\n".join(lines)
+
+    # ─── Per-file pipeline ───────────────────────────────────────────────────
+
+    def convert_text(self, src: Path, raw: str) -> str:
+        fm, body = self._split_frontmatter(raw)
+        body = self.transform_wikilinks(body)
+        body = self.transform_callouts(body)
+        body = self.add_copy_markers(body)
+        body = self.transform_images(body, src.parent)
+        fm = self._fill_frontmatter(fm, src, body)
+        return f"---\n{self.render_frontmatter(fm)}\n---\n\n{body.lstrip()}"
+
+
+# ─── Driver ───────────────────────────────────────────────────────────────────
+
+def _iter_markdown(root: Path) -> Iterable[Path]:
+    for p in root.rglob("*.md"):
+        rel = p.relative_to(root)
+        if any(part.startswith(".") for part in rel.parts):
+            continue
+        yield p
+
+
+def _output_path(src: Path, src_root: Path, out_root: Path) -> Path:
+    rel = src.relative_to(src_root)
+    # obsidian-vault/posts/foo.md  →  content/posts/foo.md  (drop the redundant 'posts/').
+    if rel.parts and rel.parts[0] == "posts":
+        rel = Path(*rel.parts[1:])
+    return out_root / rel
+
+
+def _convert_one(c: Converter, src: Path, dest: Path, raw: str) -> None:
+    out = c.convert_text(src, raw)
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_text(out, encoding="utf-8")
+
+
+def run(source: Path, output: Path, config_path: Path,
+        force: bool = False, verbose: bool = False) -> int:
+    _setup_logging(verbose)
+
+    if not source.is_dir():
+        log.error(f"Source not found: {source}")
+        return 2
+
+    cfg = load_config(config_path)
+    cache_file = Path(cfg["cache_dir"]) / "manifest.json"
+    cache = Cache.load(cache_file)
+
+    files = list(_iter_markdown(source))
+    if not files:
+        log.warning(f"No .md found in {source}")
+        return 0
+
+    converter = Converter(cfg)
+
+    # ── Plan: read each source once, hash, decide skip vs. convert. ───────────
+    pending: list[tuple[Path, Path, str]] = []
+    new_cache: dict[str, str] = {}
+    skipped = 0
+
+    for src in files:
+        try:
+            data = src.read_bytes()
+        except OSError as e:
+            log.error(f"read {src}: {e}")
+            continue
+        digest = _sha1(data)
+        rel_key = str(src.relative_to(source))
+        new_cache[rel_key] = digest
+        dest = _output_path(src, source, output)
+
+        if (not force) and dest.exists() and cache.is_unchanged(rel_key, digest):
+            skipped += 1
+            continue
+
+        try:
+            text = data.decode("utf-8")
+        except UnicodeDecodeError as e:
+            log.error(f"decode {src}: {e}")
+            continue
+
+        pending.append((src, dest, text))
+
+    if not pending:
+        _ok(f"Up-to-date ({skipped} files cached)")
+        cache.entries = new_cache
+        cache.save()
+        return 0
+
+    workers_cfg = int(cfg.get("max_workers") or 0)
+    workers = workers_cfg if workers_cfg > 0 else (os.cpu_count() or 4)
+    workers = max(1, min(workers, len(pending)))
+
+    log.info(f"Converting {len(pending)} files ({skipped} cached) — {workers} worker(s)")
+
+    t0 = datetime.now()
+    errors = 0
+
+    if workers == 1:
+        for src, dest, raw in pending:
+            try:
+                _convert_one(converter, src, dest, raw)
             except Exception as e:
-                print(f"Error processing {obsidian_file}: {e}")
-
-
-def main():
-    """Main entry point."""
-    parser = argparse.ArgumentParser(description='Convert Obsidian markdown to Hugo format')
-    parser.add_argument('--source', default='./obsidian-vault',
-                        help='Source Obsidian vault directory (default: ./obsidian-vault)')
-    parser.add_argument('--output', default='./content/posts',
-                        help='Output Hugo content directory (default: ./content/posts)')
-    parser.add_argument('--config', default='scripts/config.yaml',
-                        help='Configuration file path (default: scripts/config.yaml)')
-    parser.add_argument('--watch', action='store_true',
-                        help='Watch for changes and convert automatically')
-
-    args = parser.parse_args()
-
-    converter = ObsidianToHugoConverter(args.config)
-
-    if args.watch:
-        print("Watch mode not implemented yet. Coming soon!")
+                log.error(f"{src.name}: {e}")
+                errors += 1
     else:
-        converter.process_directory(args.source, args.output)
-        print("\n✅ Conversion complete!")
+        with ThreadPoolExecutor(max_workers=workers) as pool:
+            futures = {
+                pool.submit(_convert_one, converter, s, d, r): s
+                for s, d, r in pending
+            }
+            for fut in as_completed(futures):
+                src = futures[fut]
+                try:
+                    fut.result()
+                except Exception as e:
+                    log.error(f"{src.name}: {e}")
+                    errors += 1
+
+    cache.entries = new_cache
+    cache.save()
+
+    ms = int((datetime.now() - t0).total_seconds() * 1000)
+    if errors:
+        log.error(f"{errors} file(s) failed")
+    _ok(f"Converted {len(pending) - errors}/{len(pending)} in {ms}ms")
+    return 1 if errors else 0
+
+
+# ─── CLI ──────────────────────────────────────────────────────────────────────
+
+def main() -> int:
+    ap = argparse.ArgumentParser(
+        prog="o2h",
+        description="Obsidian → Hugo converter (fast, incremental, parallel)",
+    )
+    ap.add_argument("--source", default="./obsidian-vault",
+                    help="Source vault root (default: ./obsidian-vault)")
+    ap.add_argument("--output", default="./content/posts",
+                    help="Hugo content/posts dir (default: ./content/posts)")
+    ap.add_argument("--config", default="scripts/config.yaml",
+                    help="Path to config.yaml")
+    ap.add_argument("--force", action="store_true",
+                    help="Bypass cache; reconvert every file")
+    ap.add_argument("--clean-cache", action="store_true",
+                    help="Delete the conversion cache, then exit")
+    ap.add_argument("-v", "--verbose", action="store_true",
+                    help="Debug logging")
+    args = ap.parse_args()
+
+    _setup_logging(args.verbose)
+
+    if args.clean_cache:
+        cfg = load_config(Path(args.config))
+        p = Path(cfg["cache_dir"]) / "manifest.json"
+        if p.exists():
+            p.unlink()
+            _ok(f"Cache cleared: {p}")
+        else:
+            log.info("No cache to clear.")
+        return 0
+
+    return run(
+        Path(args.source),
+        Path(args.output),
+        Path(args.config),
+        force=args.force,
+        verbose=args.verbose,
+    )
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

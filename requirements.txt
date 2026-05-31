@@ -1,17 +1,5 @@
-# Python Dependencies for Obsidian to Hugo Converter
-# ====================================================
+# Python dependencies for the Obsidian → Hugo converter.
+# Keep this list lean — only what scripts/obsidian_to_hugo_converter.py imports.
 
-# YAML parsing for configuration
-pyyaml>=6.0
-
-# Front matter parsing and generation
-python-frontmatter>=1.0.0
-
-# Image processing and optimization
-Pillow>=9.0.0
-
-# Optional: For enhanced markdown processing
-markdown>=3.4.0
-
-# Optional: For better path handling
-pathlib2>=2.3.0
+pyyaml>=6.0      # YAML parsing (config + front matter)
+Pillow>=9.0.0    # Image resize + JPEG/PNG optimisation

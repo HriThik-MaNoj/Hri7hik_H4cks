@@ -1,5 +1,5 @@
 baseURL = 'https://www.hrithikhacks.xyz/'
-languageCode = 'en-us'
+locale = 'en-us'
 title = 'Hri7ik H4cks'
 theme = 'PaperMod'
 
